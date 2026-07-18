@@ -159,11 +159,12 @@ function SectionHead({ Icon, title, action }: { Icon: typeof Star; title: string
   );
 }
 
-function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function Card({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
   return (
-    <div className={`rounded-3xl border border-border bg-card p-6 shadow-sm ${className}`}>{children}</div>
+    <div id={id} className={`rounded-3xl border border-border bg-card p-6 shadow-sm ${className}`}>{children}</div>
   );
 }
+
 
 function Portfolio() {
   return (
