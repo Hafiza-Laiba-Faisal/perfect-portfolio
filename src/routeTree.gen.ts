@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as CertificationsRouteImport } from './routes/certifications'
+import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificationsRoute = CertificationsRouteImport.update({
+  id: '/certifications',
+  path: '/certifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,102 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/certifications': typeof CertificationsRoute
+  '/experience': typeof ExperienceRoute
+  '/projects': typeof ProjectsRoute
+  '/research': typeof ResearchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/certifications': typeof CertificationsRoute
+  '/experience': typeof ExperienceRoute
+  '/projects': typeof ProjectsRoute
+  '/research': typeof ResearchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/certifications': typeof CertificationsRoute
+  '/experience': typeof ExperienceRoute
+  '/projects': typeof ProjectsRoute
+  '/research': typeof ResearchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/achievements'
+    | '/certifications'
+    | '/experience'
+    | '/projects'
+    | '/research'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/achievements'
+    | '/certifications'
+    | '/experience'
+    | '/projects'
+    | '/research'
+  id:
+    | '__root__'
+    | '/'
+    | '/achievements'
+    | '/certifications'
+    | '/experience'
+    | '/projects'
+    | '/research'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AchievementsRoute: typeof AchievementsRoute
+  CertificationsRoute: typeof CertificationsRoute
+  ExperienceRoute: typeof ExperienceRoute
+  ProjectsRoute: typeof ProjectsRoute
+  ResearchRoute: typeof ResearchRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certifications': {
+      id: '/certifications'
+      path: '/certifications'
+      fullPath: '/certifications'
+      preLoaderRoute: typeof CertificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AchievementsRoute: AchievementsRoute,
+  CertificationsRoute: CertificationsRoute,
+  ExperienceRoute: ExperienceRoute,
+  ProjectsRoute: ProjectsRoute,
+  ResearchRoute: ResearchRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
