@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Zap, Linkedin, Github, Mail, ArrowRight, ArrowUpRight, Download,
   Briefcase, Code2, Cpu, FlaskConical, Trophy, Target,
@@ -143,7 +143,7 @@ const achievements = [
   { title: "1st Position – National CanSat Competition", by: "SUPARCO 2025" },
 ];
 
-function SectionHead({ Icon, title, action }: { Icon: typeof Star; title: string; action?: string }) {
+function SectionHead({ Icon, title, action, to }: { Icon: typeof Star; title: string; action?: string; to?: string }) {
   return (
     <div className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-3">
@@ -151,9 +151,9 @@ function SectionHead({ Icon, title, action }: { Icon: typeof Star; title: string
         <h2 className="font-display text-2xl font-semibold text-primary">{title}</h2>
       </div>
       {action && (
-        <a href="#" className="inline-flex items-center gap-1 text-sm font-medium text-ember hover:underline">
+        <Link to={to ?? "/"} className="inline-flex items-center gap-1 text-sm font-medium text-ember hover:underline">
           {action} <ArrowRight className="h-3.5 w-3.5" />
-        </a>
+        </Link>
       )}
     </div>
   );
