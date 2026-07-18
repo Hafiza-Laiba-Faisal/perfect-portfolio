@@ -298,7 +298,7 @@ function Portfolio() {
       {/* PROJECTS */}
       <section id="projects" className="mx-auto mt-6 max-w-[1440px] px-6">
         <Card>
-          <SectionHead Icon={Star} title="Featured Projects" action="View All Projects" />
+          <SectionHead Icon={Star} title="Featured Projects" action="View All Projects" to="/projects" />
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {projects.map((p) => (
               <article key={p.title} className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-background transition-shadow hover:shadow-md">
@@ -333,7 +333,7 @@ function Portfolio() {
       {/* EXPERIENCE + SKILLS */}
       <section className="mx-auto mt-6 grid max-w-[1440px] gap-6 px-6 lg:grid-cols-2">
         <Card id="experience">
-          <SectionHead Icon={Briefcase} title="Work Experience" action="View All Experience" />
+          <SectionHead Icon={Briefcase} title="Work Experience" action="View All Experience" to="/experience" />
           <div className="relative mt-6">
             <span className="absolute left-[19px] top-2 bottom-2 w-px bg-border" />
             <div className="space-y-6">
@@ -408,7 +408,7 @@ function Portfolio() {
       {/* RESEARCH / CERTS / ACHIEVEMENTS */}
       <section className="mx-auto mt-6 grid max-w-[1440px] gap-6 px-6 lg:grid-cols-3">
         <Card id="research">
-          <SectionHead Icon={BookOpen} title="Research & Publications" action="View All" />
+          <SectionHead Icon={BookOpen} title="Research & Publications" action="View All" to="/research" />
           <ul className="mt-5 space-y-4">
             {research.map((r) => (
               <li key={r.title} className="flex gap-3">
@@ -425,7 +425,7 @@ function Portfolio() {
         </Card>
 
         <Card id="certificates">
-          <SectionHead Icon={Award} title="Certifications" action="View All" />
+          <SectionHead Icon={Award} title="Certifications" action="View All" to="/certifications" />
           <ul className="mt-5 space-y-3">
             {certs.map((c) => (
               <li key={c.title + c.when} className="flex items-start justify-between gap-3">
@@ -445,7 +445,7 @@ function Portfolio() {
         </Card>
 
         <Card id="achievements">
-          <SectionHead Icon={Trophy} title="Achievements" action="View All" />
+          <SectionHead Icon={Trophy} title="Achievements" action="View All" to="/achievements" />
           <ul className="mt-5 space-y-3">
             {achievements.map((a, i) => (
               <li key={i} className="flex gap-3">
