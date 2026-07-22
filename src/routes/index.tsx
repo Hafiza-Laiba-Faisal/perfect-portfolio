@@ -14,6 +14,9 @@ import pNeuro from "@/assets/project-neuro.jpg";
 import pHeal from "@/assets/project-heal.jpg";
 import pHealth from "@/assets/project-health.jpg";
 import pCircuit from "@/assets/project-circuit.jpg";
+import logoPenovatech from "@/assets/logo-penovatech.svg";
+import logoTenbit from "@/assets/logo-tenbit.jpg";
+import logoNtdc from "@/assets/logo-ntdc.jpg";
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
@@ -51,65 +54,52 @@ const stats = [
 ];
 
 const projects = [
-  { img: pCansat, featured: true, title: "CanSat Competition (SUPARCO)", desc: "Designed & built a CanSat satellite for real-time data acquisition, telemetry, and safe recovery during descent.", tags: ["ESP32", "Sensors", "LoRa", "Telemetry"] },
-  { img: pFlood, title: "FloodGuard AI", desc: "Multi-agent AI system for flood prediction and evacuation planning using satellite & sensor data.", tags: ["AI/ML", "GeoSpatial", "Python", "Simulation"] },
-  { img: pEnergy, title: "Smart Energy Audit System", desc: "IoT-based energy monitoring system using ESP32 and PZEM-004T with real-time analytics dashboard.", tags: ["ESP32", "IoT", "Dashboard", "Cloud"] },
+  { img: pCansat, featured: true, title: "CanSat Competition (SUPARCO)", desc: "Built a CanSat satellite for real-time telemetry, 3D trajectory mapping, and safe descent recovery.", tags: ["ESP32", "ESP-NOW", "IMU", "Sensors", "Python"], github: "https://github.com/Hafiza-Laiba-Faisal/national-cansat-competition-2025" },
+  { img: pFlood, title: "FloodGuard AI (NIGHEBAN Cortex)", desc: "Architected a multi-agent AI system for flood prediction and evacuation routing, built on a custom MCP server from scratch.", tags: ["Custom MCP Server", "Multi-Agent AI"] },
+  { img: pEnergy, title: "Smart Energy Audit Monitoring System", desc: "Built an ESP32-based IoT platform for real-time energy auditing, prepaid metering, and automatic over-current protection.", tags: ["ESP32", "PZEM-004T", "Modbus-RTU", "IoT Dashboard"] },
   { img: pNexa, title: "NEXA – AI Electronics Agent", desc: "AI assistant for electronics engineers for circuit design, analysis, documentation and troubleshooting.", tags: ["LLM", "RAG", "LangChain", "AI"] },
-  { img: pNeuro, title: "NeuroShield", desc: "EEG-based addiction recovery platform combining real-time EEG signal analysis and AI.", tags: ["EEG", "ML", "Python", "Signal Processing"] },
-  { img: pHeal, title: "HealTalk", desc: "EEG-powered communication assistant for patients with locked-in syndrome using brain signal classification.", tags: ["EEG", "NLP", "ML", "Python"] },
+  { img: pNeuro, title: "NeuroShield – EEG-Powered Addiction Recovery Platform", desc: "Built a mental health platform integrating a 6-agent AI therapist roundtable (AutoGen) and real-time simulated EEG brain-state monitoring (ML/SVM) for trigger detection.", tags: ["Python", "Flask", "Multi-Agent AI", "EEG/ML (SVM)", "AutoGen"] },
+  { img: pHeal, title: "HealTalk — AI-Powered Recovery & Communication Platform", desc: "Developed a real-time mental health platform featuring live 6-agent AI therapy debates (WebSockets) and EEG-based emotion classification to assist users in their healing journey.", tags: ["Python", "Flask", "WebSockets", "Multi-Agent AI", "EEG Processing"] },
   { img: pHealth, title: "HealthLink360", desc: "AI-powered healthcare platform for emergency response, pharmacy & patient management.", tags: ["Django", "AI", "Healthcare", "Web"] },
   { img: pCircuit, title: "CircuitSathi", desc: "AI-powered learning assistant for circuit analysis, fault detection and step-by-step guidance.", tags: ["AI", "Circuit Analysis", "Web", "Python"] },
 ];
 
 const experience = [
   {
-    icon: Code2, color: "primary",
-    role: "AI Full Stack Software Engineer", org: "Penovatech (Intern → Offer)", current: true,
+    icon: Code2, color: "primary", logo: logoPenovatech,
+    role: "AI Full Stack Software Engineer", org: "PenTutor — Production Educational AI Platform", current: true,
     when: "Jan 2026 – Present", where: "Remote",
+    desc: "Building AI-powered educational platforms with LLM integration, scalable backend services, and automated deployments.",
     bullets: [
-      "Developed PenTutor LMS using Django, DRF & PostgreSQL.",
-      "Integrated real-time video & live classes using Agora SDK.",
-      "Built and deployed REST APIs and microservices.",
-      "Implemented AI features for personalized learning paths.",
+      "Architected LLM-powered student support systems and privacy-aware AI content moderation workflows.",
+      "Designed scalable Django backend services with role-based access control (RBAC).",
     ],
-    tag: "AI / Full Stack",
-    stack: ["Django, DRF, Next.js", "PostgreSQL, AWS", "Agora, Redis"],
+    tag: "AI & Full Stack",
+    stack: ["Django", "LLMs", "PostgreSQL", "AWS"],
   },
   {
-    icon: Zap, color: "ember",
-    role: "Grid Girls Internship Program 2025", org: "NTDC – National Transmission & Dispatch Company",
+    icon: Zap, color: "ember", logo: logoNtdc,
+    role: "Power System Planning Intern", org: "National Transmission & Despatch Company (NTDC)",
     when: "Jun 2025 – Aug 2025", where: "Lahore, Pakistan",
+    desc: "Power system planning and reliability analysis for Pakistan's high-voltage transmission network.",
     bullets: [
-      "Monitored real-time grid operations and system parameters.",
-      "Assisted in load management and outage scheduling.",
-      "Analyzed generation, transmission and system performance.",
+      "Conducted power flow and N-1 contingency analysis using PSS®E.",
+      "Supported dynamic stability and long-range transmission planning studies.",
     ],
     tag: "Power Systems",
-    stack: ["Grid Operations", "SCADA, EMS", "Load Management"],
+    stack: ["PSS®E", "Power Flow", "N-1 Contingency", "Grid Reliability"],
   },
   {
-    icon: Cpu, color: "primary",
-    role: "Electronics Engineering Intern", org: "Ezitech Institute",
-    when: "Jul 2024 – Aug 2024", where: "Lahore, Pakistan",
+    icon: Code2, color: "primary", logo: logoTenbit,
+    role: "AI Software Engineering Intern", org: "TenBit Solutions",
+    when: "Jun 2026 – Present", where: "Onsite",
+    desc: "Developing production-grade AI platforms, RAG systems, and intelligent document processing pipelines.",
     bullets: [
-      "Designed and tested electronic circuits & PCB layouts.",
-      "Worked with Arduino, ESP32 and various sensors.",
-      "Gained experience in soldering & hardware debugging.",
+      "Engineered multi-tenant RAG platforms with hybrid retrieval and configurable LLM providers.",
+      "Built automated web intelligence pipelines and high-availability OCR microservices.",
     ],
-    tag: "Electronics",
-    stack: ["PCB Design, Arduino", "ESP32, Sensors", "Embedded C"],
-  },
-  {
-    icon: Code2, color: "primary",
-    role: "Web Development Intern", org: "TenBit Solutions",
-    when: "May 2024 – Jun 2024", where: "Remote",
-    bullets: [
-      "Developed responsive web interfaces using HTML, CSS, JS.",
-      "Built backend features using Django and REST APIs.",
-      "Worked on bug fixing and performance improvements.",
-    ],
-    tag: "Web Development",
-    stack: ["Django, JavaScript", "HTML, CSS, Git", "REST APIs"],
+    tag: "Generative AI",
+    stack: ["RAG", "LLMs", "OCR", "AI Infrastructure"],
   },
 ];
 
@@ -323,6 +313,13 @@ function Portfolio() {
                       </span>
                     ))}
                   </div>
+                  {p.github && (
+                    <div className="mt-3 flex items-center gap-2 border-t border-border pt-3">
+                      <a href={p.github} target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-foreground">
+                        <Github className="h-4 w-4" />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
@@ -341,9 +338,9 @@ function Portfolio() {
                 const Icon = e.icon;
                 const isEmber = e.color === "ember";
                 return (
-                  <div key={e.role} className="relative pl-14">
-                    <span className={`absolute left-0 top-0 inline-flex h-10 w-10 items-center justify-center rounded-full border-2 ${isEmber ? "border-ember bg-[color:var(--ember-soft)] text-ember" : "border-primary/20 bg-secondary text-primary"}`}>
-                      <Icon className="h-4 w-4" />
+                  <div key={e.role + e.org} className="relative pl-14">
+                    <span className={`absolute left-0 top-0 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 ${isEmber ? "border-ember bg-[color:var(--ember-soft)] text-ember" : "border-primary/20 bg-secondary text-primary"}`}>
+                      {e.logo ? <img src={e.logo} alt="" className="h-full w-full object-cover" /> : <Icon className="h-4 w-4" />}
                     </span>
                     <div className="flex flex-wrap items-baseline gap-2">
                       <h3 className={`font-display text-lg font-semibold ${isEmber ? "text-ember" : "text-primary"}`}>
@@ -360,9 +357,10 @@ function Portfolio() {
                       <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3" /> {e.when}</span>
                       <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" /> {e.where}</span>
                     </div>
+                    {e.desc && <p className="mt-2 text-[13px] leading-snug text-foreground/70">{e.desc}</p>}
                     <div className="mt-3 grid gap-3 sm:grid-cols-[1fr_auto]">
                       <ul className="space-y-1 text-[12.5px] text-foreground/75">
-                        {e.bullets.map((b) => (
+                        {e.bullets?.map((b) => (
                           <li key={b} className="flex gap-2">
                             <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ember" />
                             {b}
@@ -371,7 +369,7 @@ function Portfolio() {
                       </ul>
                       <div className="rounded-xl bg-secondary p-3 text-[11.5px] leading-snug text-foreground/75 sm:min-w-[150px]">
                         <div className="mb-1 font-semibold text-primary">{e.tag}</div>
-                        {e.stack.map((s) => <div key={s}>{s}</div>)}
+                        {e.stack?.map((s) => <div key={s}>{s}</div>)}
                       </div>
                     </div>
                   </div>

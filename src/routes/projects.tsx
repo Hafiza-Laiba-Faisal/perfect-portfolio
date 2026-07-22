@@ -17,7 +17,8 @@ export const Route = createFileRoute("/projects")({
 const specIcon = { chip: Cpu, battery: Battery, sensor: Target, structure: Box, comm: Radio, mission: Rocket } as const;
 
 function ProjectsPage() {
-  const [featured, ...rest] = projects;
+  const withDetails = projects.filter(p => p.details);
+  const withoutDetails = projects.filter(p => !p.details);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader active="Projects" />
@@ -32,24 +33,37 @@ function ProjectsPage() {
         }
       />
 
-      {/* FEATURED */}
-      {featured?.details && (
-        <section className="mx-auto mt-6 max-w-[1440px] px-6">
+      {/* DETAILED PROJECTS */}
+      {withDetails.map((p) => (
+        <section key={p.title} className="mx-auto mt-6 max-w-[1440px] px-6">
           <Card className="!p-6 md:!p-8">
             <div className="grid gap-6 lg:grid-cols-[380px_1fr_260px]">
               <div className="overflow-hidden rounded-2xl bg-secondary">
-                <img src={featured.img} alt={featured.title} className="h-full w-full object-cover" />
+                <img src={p.img} alt={p.title} className="h-full w-full object-cover" />
               </div>
               <div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold text-primary-foreground">
-                  <Star className="h-3 w-3" fill="currentColor" /> Featured Project
-                </span>
-                <h2 className="mt-3 font-display text-3xl font-bold text-primary">{featured.title}</h2>
-                <p className="mt-1 text-[13px] font-medium text-foreground/75">{featured.details.role}</p>
-                <p className="mt-4 text-[13.5px] leading-relaxed text-foreground/70">{featured.desc}</p>
+                {p.featured && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold text-primary-foreground">
+                    <Star className="h-3 w-3" fill="currentColor" /> Featured Project
+                  </span>
+                )}
+                <h2 className="mt-3 font-display text-3xl font-bold text-primary">{p.title}</h2>
+                <p className="mt-1 text-[13px] font-medium text-foreground/75">{p.details!.role}</p>
+                <p className="mt-4 text-[13.5px] leading-relaxed text-foreground/70">{p.desc}</p>
+
+                {p.details!.bullets && (
+                  <ul className="mt-4 space-y-2 text-[13px] leading-relaxed text-foreground/70">
+                    {p.details!.bullets.map((b) => (
+                      <li key={b} className="flex gap-2">
+                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ember" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {featured.details.specs?.map((s) => {
+                  {p.details!.specs?.map((s) => {
                     const I = specIcon[s.icon];
                     return (
                       <div key={s.label} className="flex gap-3">
@@ -66,30 +80,45 @@ function ProjectsPage() {
                 </div>
               </div>
               <div className="rounded-2xl bg-secondary p-5">
-                <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-foreground/70">
-                  <Trophy className="h-4 w-4 text-ember" /> Achievement
-                </div>
-                <p className="mt-2 font-display text-lg font-semibold text-primary">{featured.details.achievement?.label}</p>
-                <p className="text-[12.5px] text-foreground/70">{featured.details.achievement?.by}</p>
+                {p.details!.achievement && (
+                  <>
+                    <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-foreground/70">
+                      <Trophy className="h-4 w-4 text-ember" /> Achievement
+                    </div>
+                    <p className="mt-2 font-display text-lg font-semibold text-primary">{p.details!.achievement.label}</p>
+                    <p className="text-[12.5px] text-foreground/70">{p.details!.achievement.by}</p>
+                  </>
+                )}
 
-                <div className="mt-5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-foreground/70">
-                  <Star className="h-4 w-4 text-ember" /> Key Features
-                </div>
-                <ul className="mt-2 space-y-1.5 text-[12.5px] text-foreground/75">
-                  {featured.details.features?.map((f) => (
-                    <li key={f} className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ember" />{f}</li>
-                  ))}
-                </ul>
+                {p.details!.features && (
+                  <>
+                    <div className="mt-5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-foreground/70">
+                      <Star className="h-4 w-4 text-ember" /> Key Features
+                    </div>
+                    <ul className="mt-2 space-y-1.5 text-[12.5px] text-foreground/75">
+                      {p.details!.features?.map((f) => (
+                        <li key={f} className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ember" />{f}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+                {p.github && (
+                  <div className="mt-5">
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-[12px] font-medium text-foreground transition-colors hover:bg-secondary">
+                      <Github className="h-4 w-4" /> View on GitHub
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </Card>
         </section>
-      )}
+      ))}
 
       {/* GRID */}
       <section className="mx-auto mt-6 max-w-[1440px] px-6">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {rest.map((p) => (
+          {withoutDetails.map((p) => (
             <article key={p.title} className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-md">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -106,7 +135,7 @@ function ProjectsPage() {
                   <a href="#" className="inline-flex items-center gap-1 text-[12.5px] font-medium text-ember hover:underline">
                     View Project <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
-                  <a href="#" className="text-foreground/60 hover:text-primary"><Github className="h-4 w-4" /></a>
+                  <a href="#" className="text-foreground hover:text-foreground/80"><Github className="h-4 w-4" /></a>
                 </div>
               </div>
             </article>

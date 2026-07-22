@@ -12,6 +12,9 @@ import pNeuro from "@/assets/project-neuro.jpg";
 import pHeal from "@/assets/project-heal.jpg";
 import pHealth from "@/assets/project-health.jpg";
 import pCircuit from "@/assets/project-circuit.jpg";
+import logoPenovatech from "@/assets/logo-penovatech.svg";
+import logoTenbit from "@/assets/logo-tenbit.jpg";
+import logoNtdc from "@/assets/logo-ntdc.jpg";
 
 export const navItems: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
@@ -35,101 +38,249 @@ export const stats = [
 ];
 
 export type Project = {
-  img: string; featured?: boolean; title: string; desc: string; tags: string[];
+  img: string; featured?: boolean; title: string; desc: string; tags: string[]; github?: string;
   details?: {
     role?: string;
     achievement?: { label: string; by: string };
     features?: string[];
     specs?: { icon: "chip" | "battery" | "sensor" | "structure" | "comm" | "mission"; label: string; value: string }[];
+    bullets?: string[];
   };
 };
 
 export const projects: Project[] = [
   {
     img: pCansat, featured: true, title: "CanSat Competition (SUPARCO)",
-    desc: "Team Lead – 1st Position in Pakistan's 1st National CanSat Competition 2025. Designed & developed a CanSat satellite prototype for real-time data acquisition, telemetry, and safe recovery during descent.",
-    tags: ["ESP32", "Sensors", "LoRa", "Telemetry"],
+    desc: "Led Pakistan's first drone-based CanSat deployment, engineering real-time telemetry and predictive analytics for safe descent.",
+    tags: ["ESP32", "ESP-NOW", "IMU", "Sensors", "Python"],
+    github: "https://github.com/Hafiza-Laiba-Faisal/national-cansat-competition-2025",
     details: {
       role: "Team Lead – 1st Position in Pakistan's 1st National CanSat Competition 2025",
-      achievement: { label: "1st Position", by: "Pakistan's 1st National CanSat Competition 2025 by SUPARCO" },
-      features: ["Altitude & Temp. Monitoring", "Real-time Telemetry", "Compact & Lightweight Design", "Reliable Power & Communication"],
+      achievement: { label: "1st Position", by: "Level 3 Missions by SUPARCO & RESOLVE" },
+      features: [
+        "Real-time Telemetry & Visualization",
+        "IMU Sensor Fusion & 3D Trajectory",
+        "Predictive Analytics for Descent",
+        "Autonomous Mission Event Detection",
+      ],
       specs: [
-        { icon: "chip", label: "Microcontroller", value: "ESP32" },
-        { icon: "battery", label: "Power System", value: "Li-Po Battery | Power Management" },
-        { icon: "sensor", label: "Sensors", value: "BMP280, Pressure, Temperature, Altitude" },
-        { icon: "structure", label: "Structure", value: "3D Printed Frame | Modular Stack Design" },
-        { icon: "comm", label: "Communication", value: "LoRa | RF Telemetry" },
-        { icon: "mission", label: "Mission", value: "Collect & transmit real-time environmental data during descent" },
+        { icon: "chip", label: "Microcontroller", value: "ESP32 | Arduino C++" },
+        { icon: "sensor", label: "Sensors", value: "MPU6050 (IMU), BMP180, DHT22, NEO-M8 GPS" },
+        { icon: "comm", label: "Communication", value: "ESP-NOW Protocol | Long-Range Telemetry" },
+        { icon: "structure", label: "Role", value: "Team Lead & Mission Systems Engineer" },
+        { icon: "mission", label: "Mission", value: "Real-time telemetry, 3D trajectory mapping & event detection" },
       ],
     },
   },
-  { img: pEnergy, title: "Smart Energy Audit System", desc: "Real-time energy monitoring system using ESP32 and PZEM-004T with cloud dashboard.", tags: ["ESP32", "IoT", "Power Systems"] },
-  { img: pFlood, title: "FloodGuard AI", desc: "Multi-agent AI system for flood prediction and evacuation planning using satellite & sensor data.", tags: ["AI/ML", "GeoSpatial", "Python"] },
+  { img: pEnergy, title: "Smart Energy Audit Monitoring System", desc: "Engineered an ESP32 and PZEM-004T based IoT solution for real-time energy monitoring, anomaly detection, and remote power control.", tags: ["ESP32", "PZEM-004T", "Modbus-RTU", "IoT Dashboard"],
+    github: "https://github.com/Hafiza-Laiba-Faisal/smart-energy-audit-system",
+    details: {
+    role: "IoT Embedded Systems Developer — Power Electronics Lab, LCWU",
+    features: [
+      "Real-Time Energy Auditing",
+      "Dual-Interface (TFT + Web)",
+      "RS485 Modbus-RTU Integration",
+      "Over-Voltage/Current Protection",
+      "Auto-Relay Power Cutoff",
+      "Prepaid Balance Management",
+      "Remote Load Control",
+      "Smart Metering & IoT",
+    ],
+    specs: [
+      { icon: "chip", label: "Hardware", value: "ESP32 | PZEM-004T V3.0 | TFT LCD | Relay Module" },
+      { icon: "comm", label: "Communication", value: "RS485 / Modbus-RTU | WiFi" },
+      { icon: "structure", label: "Tech Stack", value: "ESP32 (Arduino C++) | PZEM-004T V3.0 | RS485 / Modbus-RTU | TFT LCD | Relay Module | WiFi" },
+    ],
+    bullets: [
+      "Developed a dual-interface monitoring system (Local TFT + WiFi Web) for live tracking of voltage, current, and power via RS485 / Modbus-RTU.",
+      "Designed automated protection logic to trigger immediate relay-based power cutoff during over-voltage or over-current faults.",
+      "Built a prepaid energy management module for balance tracking, usage limits, and remote load toggling.",
+    ],
+  } },
+  { img: pFlood, title: "FloodGuard AI (NIGHEBAN Cortex)", desc: "Architected a multi-agent AI command system for end-to-end flood disaster management, integrating real-time prediction, evacuation routing, and relief resource optimization.", tags: ["Custom MCP Server", "Multi-Agent AI"], details: {
+    role: "System Architect & Lead Developer",
+    achievement: { label: "Most Innovative Award – Innovista Hackathon 2025 (Regional Level, Lahore)", by: "Innovista Hackathon 2025" },
+    features: [
+      "Custom MCP Server Architecture",
+      "Multi-Agent AI Coordination",
+      "Real-time Evacuation Routing",
+      "Automated Relief Estimation",
+    ],
+    specs: [
+      { icon: "chip", label: "Frontend", value: "React.js | Central Command Dashboard" },
+      { icon: "sensor", label: "Backend & AI", value: "Python | FastAPI | Custom MCP Server | Multi-Agent System" },
+      { icon: "comm", label: "Database", value: "PostgreSQL | MongoDB" },
+      { icon: "structure", label: "Role", value: "System Architect & Lead Developer" },
+      { icon: "mission", label: "Domains", value: "Geospatial Analysis | Predictive Modeling | Resource Optimization" },
+    ],
+    bullets: [
+      "Built a custom MCP Server from scratch to orchestrate the 4-agent AI pipeline (Hydro-Met, Evacuation, Relief, Reconstruction) and manage data flow across the system.",
+      "Implemented intelligent algorithms for safe route optimization, dynamic camp capacity management, and prioritized vehicle assignment for affected populations.",
+      "Developed real-time resource estimation logic for food, water, and medical supplies based on live affected-family data and inventory tracking.",
+      "Built a central command dashboard (React) providing authorities (NDMA/PDMA) with a unified view of risk alerts, camp statuses, and damage assessments.",
+    ],
+  } },
   { img: pNexa, title: "NEXA – AI Electronics Agent", desc: "AI assistant for electronics engineers that helps in circuit design, analysis, explanations and documentation.", tags: ["Python", "LLM", "LangChain", "AI"] },
-  { img: pNeuro, title: "NeuroShield", desc: "EEG-based addiction recovery platform combining real-time EEG signal analysis with AI.", tags: ["EEG", "ML", "Python"] },
-  { img: pHeal, title: "HealTalk", desc: "EEG-powered communication assistant for patients with locked-in syndrome using brain signal classification.", tags: ["EEG", "NLP", "Python"] },
+  { img: pNeuro, title: "NeuroShield – EEG-Powered Addiction Recovery Platform", desc: "Engineered a mental health platform combining neuroscience and multi-agent AI to provide 24/7 addiction recovery support, real-time trigger detection, and CBT-based coping tools.", tags: ["Python", "Flask", "Multi-Agent AI", "EEG/ML (SVM)", "AutoGen"],
+    github: "https://github.com/Hafiza-Laiba-Faisal/Neuroshield",
+    details: {
+      role: "AI/ML Engineer — Multi-Agent Systems",
+      achievement: { label: "Honorable Mention – PeerBridge Hackathon 2025 (International)", by: "PeerBridge Mental Health Hacks 2025" },
+      features: [
+        "6-Agent AI Therapist Roundtable",
+        "Real-Time EEG Brain Monitoring",
+        "ML-Based Trigger Detection (SVM)",
+        "Context-Aware NLP AI Coach",
+        "Interactive Coping Tools (Urge Surfing)",
+        "Privacy-First Anonymous Design",
+        "Mood Calendar & Gamification",
+        "24/7 Digital Safe Space",
+      ],
+      specs: [
+        { icon: "chip", label: "Frontend", value: "Flask Templates | Socket.IO | Real-Time UI" },
+        { icon: "mission", label: "Backend & AI", value: "Python (Flask) | AutoGen | OpenAI/Groq API | scikit-learn (SVM)" },
+        { icon: "comm", label: "Communication", value: "Socket.IO | WebSockets | Anonymous Sessions" },
+        { icon: "sensor", label: "Database", value: "PostgreSQL" },
+        { icon: "structure", label: "Role", value: "AI/ML Engineer — Multi-Agent Systems" },
+      ],
+      bullets: [
+        "Developed a 6-Agent AI Therapist Roundtable using AutoGen and LLMs (GPT-4, Claude, Llama 3.3) to provide multi-perspective therapy (CBT, Holistic, Trauma-informed) via real-time Socket.IO debates.",
+        "Implemented an ML pipeline (SVM) to process simulated EEG signals (via NumPy/SciPy) for classifying brain states (Focused, Relaxed, Triggered) with 87% accuracy.",
+        "Built an interactive NLP AI Coach providing context-aware CBT strategies, urge surfing, and automated mood-tracking journal integration.",
+        "Ensured a privacy-first architecture with anonymous IDs, bcrypt password hashing, and local-first storage using Flask and PostgreSQL.",
+      ],
+    } },
+  { img: pHeal, title: "HealTalk — AI-Powered Recovery Support Platform", desc: "Engineered a real-time mental health and recovery platform that bridges EEG-based emotion detection with multi-agent AI therapy, designed to assist users (including those with communication barriers) in their emotional healing journey.", tags: ["Python", "Flask", "WebSockets", "Multi-Agent AI", "EEG Processing"],
+    github: "https://github.com/Hafiza-Laiba-Faisal/Hafiza_Laiba_Faisal-VieroMind_Lhr_Pakathon_4_Oct_2025", details: {
+      role: "AI Engineer — Real-Time Mental Health Systems",
+      achievement: { label: "3rd Position – VieroMind Pakathon 2025", by: "VieroMind Pakathon 2025" },
+      features: [
+        "Live AI Therapy Debates (WebSocket)",
+        "Real-Time EEG Emotion Classification",
+        "24/7 NLP Support Coach",
+        "Dynamic Brain Wave Visualization",
+        "Digital Recovery Journaling",
+        "Emergency Calming Interventions",
+        "Anonymous & Secure Local Storage",
+        "Gamified Daily Streaks",
+      ],
+      specs: [
+        { icon: "chip", label: "Frontend", value: "Bootstrap 5 | Chart.js | Real-Time Dashboard" },
+        { icon: "mission", label: "Backend & AI", value: "Python (Flask) | Flask-SocketIO | AutoGen | OpenRouter GPT" },
+        { icon: "comm", label: "Communication", value: "WebSockets | Socket.IO | Live Agent Debates" },
+        { icon: "sensor", label: "Data & Processing", value: "EEG (.npy) | NumPy | Emotion Classification" },
+        { icon: "structure", label: "Storage", value: "SQLite" },
+      ],
+      bullets: [
+        "Architected a real-time multi-agent therapy system using Microsoft AutoGen and Flask-SocketIO, enabling six distinct AI therapists to conduct live, concurrent debates for personalized emotional support.",
+        "Developed an EEG signal processing pipeline capable of ingesting raw brain wave data (.npy) to classify emotional states (Focused, Triggered, Relaxed) and visualize them dynamically via Chart.js.",
+        "Integrated a 24/7 NLP AI Support Coach using OpenRouter GPT models to deliver continuous behavioral guidance, paired with streak tracking and digital journaling for long-term engagement.",
+        "Built a responsive, low-latency web architecture using Flask, WebSockets, and Bootstrap 5 to ensure seamless live communication between the user and AI agents.",
+      ],
+    } },
   { img: pHealth, title: "HealthLink360", desc: "AI-powered platform integrating emergency response, pharmacy management and patient care.", tags: ["Django", "AI", "Healthcare", "Web"] },
   { img: pCircuit, title: "CircuitSathi", desc: "AI-powered learning assistant for circuit analysis, fault detection and step-by-step guidance.", tags: ["AI", "Circuit Analysis", "Web"] },
-  { img: pEnergy, title: "E-Commerce Price Tracker", desc: "Django REST API platform for monitoring e-commerce product prices with alerts and insights.", tags: ["Django", "API", "Database"] },
 ];
 
-export const experience = [
+export interface ExperienceItem {
+  icon: typeof Code2;
+  color: string;
+  logo: string | null;
+  role: string;
+  org: string;
+  subtitle?: string;
+  current?: boolean;
+  when: string;
+  where: string;
+  shortDesc: string;
+  shortBullets: string[];
+  shortTag: string;
+  shortStack: string[];
+  detailedDesc: string;
+  detailedBullets: string[];
+  detailedTag: string;
+  detailedStack: string[];
+}
+
+export const experience: ExperienceItem[] = [
   {
-    icon: Code2, color: "primary",
-    role: "AI Full Stack Software Engineer", org: "Penovatech", subtitle: "AI Full Stack Software Engineer (Intern → Offer)", current: true,
+    icon: Code2, color: "emerald", logo: logoPenovatech,
+    role: "AI Full Stack Software Engineer", org: "PenTutor — Production Educational AI Platform", current: true,
     when: "Jan 2026 – Present", where: "Remote",
-    desc: "Working on AI-powered learning management systems (PenTutor) and real-time ML solutions. Building scalable backend APIs, integrating real-time communication and ML models.",
-    bullets: [
-      "Developed PenTutor LMS using Django, DRF and PostgreSQL",
-      "Integrated real-time video & live classes using Agora SDK",
-      "Built and deployed REST APIs and microservices",
-      "Implemented AI features for personalized learning paths",
-      "Working with AWS (EC2, S3) for deployment and scalability",
+    shortDesc: "Building AI-powered educational platforms with LLM integration, scalable backend services, and automated deployments.",
+    shortBullets: [
+      "Architected LLM-powered student support systems and privacy-aware AI content moderation workflows.",
+      "Designed scalable Django backend services with role-based access control (RBAC).",
     ],
-    tag: "AI / Full Stack",
-    stack: ["Django, DRF, Next.js", "PostgreSQL, AWS", "Agora, Redis"],
+    shortTag: "AI & Full Stack",
+    shortStack: ["Django · LLMs · PostgreSQL · AWS"],
+    detailedDesc: "Building AI-powered educational platforms combining LLMs, real-time communication, role-based access control, and scalable backend infrastructure.",
+    detailedBullets: [
+      "Architected LLM-powered student support systems and privacy-aware AI content moderation workflows serving real users.",
+      "Designed and implemented Role-Based Access Control (RBAC) across the platform.",
+      "Developed scalable Django backend services and REST APIs to handle educational data.",
+      "Worked on deployment automation pipelines and cloud infrastructure management.",
+      "Integrated AI-driven features into the platform to enhance student learning experiences.",
+    ],
+    detailedTag: "Technical Domains",
+    detailedStack: [
+      "AI & ML: LLMs, AI Content Moderation",
+      "Backend: Django, REST APIs, PostgreSQL",
+      "Infrastructure: AWS, CI/CD, Docker",
+    ],
   },
   {
-    icon: Zap, color: "ember",
-    role: "NTDC – National Transmission & Despatch Company", org: "Grid Girls Internship Program 2025",
+    icon: Zap, color: "amber", logo: logoNtdc,
+    role: "Power System Planning Intern", org: "National Transmission & Despatch Company (NTDC)",
+    subtitle: "Grid Girls Pakistan — ADB-funded",
     when: "Jun 2025 – Aug 2025", where: "Lahore, Pakistan",
-    desc: "Worked in the System Operation Department and gained practical exposure to power system operations and grid management.",
-    bullets: [
-      "Monitored real-time grid operations and system parameters",
-      "Assisted in load management and outage scheduling",
-      "Analyzed generation, transmission and system performance",
-      "Prepared operational reports and documentation",
+    shortDesc: "Power system planning and reliability analysis for Pakistan's high-voltage transmission network.",
+    shortBullets: [
+      "Conducted power flow and N-1 contingency analysis using PSS®E.",
+      "Supported dynamic stability and long-range transmission planning studies.",
     ],
-    tag: "Power Systems",
-    stack: ["Grid Operations", "SCADA, EMS", "Load Management"],
+    shortTag: "Power Systems",
+    shortStack: ["PSS®E · Power Flow · N-1 Contingency · Grid Reliability"],
+    detailedDesc: "Worked within power system planning and reliability analysis, gaining practical exposure to Pakistan's national high-voltage transmission network.",
+    detailedBullets: [
+      "Selected top 12% nationwide (Grid Girls Pakistan, ADB-funded) for competitive power system planning internship.",
+      "Executed power flow studies and N-1 contingency analysis for the national high-voltage network using PSS®E.",
+      "Conducted dynamic stability analysis supporting long-range transmission planning.",
+      "Contributed to grid reliability assessments and power system simulation workflows.",
+    ],
+    detailedTag: "Technical Exposure",
+    detailedStack: [
+      "PSS®E, Power Flow Analysis, N-1 Contingency",
+      "Dynamic Stability, Transmission Planning",
+      "Grid Reliability",
+    ],
   },
   {
-    icon: Cpu, color: "primary",
-    role: "Ezitech Institute", org: "Electronics Engineering Intern",
-    when: "Jul 2024 – Aug 2024", where: "Lahore, Pakistan",
-    desc: "Hands-on training in embedded systems, PCB designing and electronics prototyping.",
-    bullets: [
-      "Designed and tested electronic circuits and PCB layouts",
-      "Worked with Arduino, ESP32 and various sensors",
-      "Gained experience in soldering and hardware debugging",
-      "Built mini projects and prototypes",
+    icon: Code2, color: "primary", logo: logoTenbit,
+    role: "AI Software Engineering Intern", org: "TenBit Solutions", current: true,
+    when: "Jun 2026 – Present", where: "Onsite",
+    shortDesc: "Developing production-grade AI platforms, RAG systems, and intelligent document processing pipelines.",
+    shortBullets: [
+      "Engineered multi-tenant RAG platforms with hybrid retrieval and configurable LLM providers.",
+      "Built automated web intelligence pipelines and high-availability OCR microservices.",
     ],
-    tag: "Electronics",
-    stack: ["PCB Design, Arduino", "ESP32, Sensors", "Embedded C"],
-  },
-  {
-    icon: Code2, color: "primary",
-    role: "TenBit Solutions", org: "Web Development Intern",
-    when: "May 2024 – Jun 2024", where: "Remote",
-    desc: "Worked on frontend and backend development tasks for real-world web applications.",
-    bullets: [
-      "Developed responsive web interfaces using HTML, CSS, JS",
-      "Built backend features using Django and REST APIs",
-      "Worked on bug fixing and performance improvements",
-      "Collaborated in a team using Git and Agile workflow",
+    shortTag: "Generative AI",
+    shortStack: ["RAG · LLMs · OCR · AI Infrastructure"],
+    detailedDesc: "Working on production-grade AI systems spanning RAG, intelligent document processing, web intelligence, OCR, and generative AI infrastructure.",
+    detailedBullets: [
+      "Engineered a multi-tenant RAG platform featuring hybrid retrieval, OCR integration, and configurable LLM providers.",
+      "Deployed a domain-specific UAE VAT AI assistant, utilizing RAG grounded in official government documentation.",
+      "Architected automated web intelligence pipelines (including Facebook) with background processing for structured data export.",
+      "Developed high-availability OCR microservices with failover mechanisms for intelligent document processing and ingestion.",
+      "Contributing to AI Video Generation SaaS architecture, driving model evaluation, GPU infrastructure planning, and deployment strategies.",
     ],
-    tag: "Web Development",
-    stack: ["Django, JavaScript", "HTML, CSS, Git", "REST APIs"],
+    detailedTag: "Technical Domains",
+    detailedStack: [
+      "Generative AI: LLMs, RAG, Hybrid Retrieval",
+      "Document Intelligence: OCR, Data Extraction",
+      "Web Intelligence: Web Scraping, Background Processing",
+      "Infrastructure: GPU Infrastructure, MLOps, Deployment",
+    ],
   },
 ];
 
