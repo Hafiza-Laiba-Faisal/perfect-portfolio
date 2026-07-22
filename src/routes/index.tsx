@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
           "Portfolio of Hafiza Laiba Faisal — Electrical Engineer & AI Developer working on aerospace, embedded systems, and machine learning.",
       },
       { property: "og:title", content: "Hafiza Laiba Faisal — Electrical Engineer & AI Developer" },
-      { property: "og:description", content: "Engineering the future with purpose and innovation." },
+      { property: "og:description", content: "Portfolio of Hafiza Laiba Faisal — Electrical Engineer & AI Developer working on aerospace, embedded systems, and machine learning." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Hafiza Laiba Faisal — Electrical Engineer & AI Developer" },
+      { name: "description", content: "Portfolio of Hafiza Laiba Faisal — Electrical Engineer & AI Developer working on aerospace, embedded systems, and machine learning." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Hafiza Laiba Faisal — Electrical Engineer & AI Developer" },
+      { property: "og:description", content: "Portfolio of Hafiza Laiba Faisal — Electrical Engineer & AI Developer working on aerospace, embedded systems, and machine learning." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Hafiza Laiba Faisal — Electrical Engineer & AI Developer" },
+      { name: "twitter:description", content: "Portfolio of Hafiza Laiba Faisal — Electrical Engineer & AI Developer working on aerospace, embedded systems, and machine learning." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7b0e4af3-c9a5-4187-9b13-744403d762a6/id-preview-8a0695c2--24ff3879-5ed1-4cd8-a79c-7e2022103cad.lovable.app-1784736253428.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7b0e4af3-c9a5-4187-9b13-744403d762a6/id-preview-8a0695c2--24ff3879-5ed1-4cd8-a79c-7e2022103cad.lovable.app-1784736253428.png" },
     ],
     links: [
       {
