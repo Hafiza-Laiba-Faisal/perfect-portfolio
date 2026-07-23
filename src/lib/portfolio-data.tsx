@@ -45,6 +45,7 @@ export type Project = {
     features?: string[];
     specs?: { icon: "chip" | "battery" | "sensor" | "structure" | "comm" | "mission"; label: string; value: string }[];
     bullets?: string[];
+    systemFlow?: string[];
   };
 };
 
@@ -178,8 +179,74 @@ export const projects: Project[] = [
         "Built a responsive, low-latency web architecture using Flask, WebSockets, and Bootstrap 5 to ensure seamless live communication between the user and AI agents.",
       ],
     } },
-  { img: pHealth, title: "HealthLink360", desc: "AI-powered platform integrating emergency response, pharmacy management and patient care.", tags: ["Django", "AI", "Healthcare", "Web"] },
-  { img: pCircuit, title: "CircuitSathi", desc: "AI-powered learning assistant for circuit analysis, fault detection and step-by-step guidance.", tags: ["AI", "Circuit Analysis", "Web"] },
+  { img: pHealth, title: "HealthLink360 — Multi-Agent AI Healthcare Ecosystem", desc: "Engineered a next-generation AI healthcare platform connecting Pakistan's major hospitals in real-time. Used a network of specialized AI agents and a Human-in-the-Loop (HITL) architecture to automate emergency response, medico-legal workflows, and hospital operations.", tags: ["FastAPI", "Multi-Agent AI", "Human-in-the-Loop", "Custom MCP Servers"], details: {
+      role: "AI Systems Architect — Healthcare Automation",
+      features: [
+        "Human-in-the-Loop (HITL) Design",
+        "Multi-Agent Ecosystem with MCP",
+        "Cross-Agent Emergency Handoffs",
+        "AI Video Waste Classification",
+        "Automated PII Data Redaction",
+        "Real-Time WebSocket Agent Tracing",
+      ],
+      specs: [
+        { icon: "chip", label: "Frontend", value: "Dashboard UI | Real-Time Monitoring" },
+        { icon: "mission", label: "Backend & AI", value: "Python (FastAPI) | Anthropic Agents SDK | Custom MCP Servers" },
+        { icon: "comm", label: "Communication", value: "WebSockets | Real-Time Agent Tracing" },
+        { icon: "sensor", label: "Data & Processing", value: "MongoDB | Computer Vision (Video AI)" },
+        { icon: "structure", label: "Role", value: "AI Systems Architect — Healthcare Automation" },
+      ],
+      bullets: [
+        "Architected a multi-agent ecosystem using custom Model Context Protocol (MCP) servers to orchestrate specialized agents (Maternal, Pharmacy, Waste, Mental Health, Medico-Legal) for autonomous task execution.",
+        "Implemented a Human-in-the-Loop (HITL) flow where hospital staff interact with AI agents via a dashboard—agents process data, suggest actions (e.g., FIR drafting, waste disposal), and humans approve or trigger final actions.",
+        "Enabled cross-agent handoffs (e.g., Maternal Agent seamlessly handing off emergency cases to Tracking Agent for real-time ambulance dispatch with ETA calculation).",
+        "Built an AI-powered video analysis pipeline where the Waste Agent processes hospital CCTV/video uploads to detect and classify bio-medical waste (sharps, placenta) and estimate weights.",
+        "Developed a real-time FastAPI backend with WebSockets for live agent tracing, automated PII redaction for sensitive cases, and dynamic dashboard updates.",
+      ],
+      systemFlow: [
+        "Human Input: Staff triggers task via dashboard (e.g., Emergency, Video Upload).",
+        "Agent Routing: FastAPI routes query to specialized AI Agent.",
+        "MCP Execution: Agent uses custom MCP servers to fetch data or process documents.",
+        "Cross-Agent Handoff: Agents collaborate (e.g., Maternal → Tracking for ambulance).",
+        "Human Approval: System returns AI-generated report/action for human verification.",
+        "Action Logged: Final action is dispatched and traced via WebSockets.",
+      ],
+    } },
+  { img: pCircuit, title: "Circuit Sathi ⚡ — Gamified AI Electronics Tutor", desc: "Engineered an AI-driven STEM platform that transforms static electronics education into a gamified experience. Students can visually simulate electron flow, interact with a Socratic AI tutor, and upload lab manuals to auto-generate interactive circuit schematics.", tags: ["Next.js", "Express", "PixiJS", "Mistral AI", "MNA Physics Engine"], details: {
+      role: "Full-Stack AI Engineer — EdTech Gamification",
+      features: [
+        "Gamified Real-Time Circuit Sim",
+        "Server-Side MNA Physics Solver",
+        "Agentic Socratic AI Tutor",
+        "AI Vision Schematic Parser",
+        "Multi-Provider LLM Fallback",
+        "Voice Q&A & Audio Narration",
+        "Native KiCad/SPICE Parsing",
+        "XP & Level Progression System",
+      ],
+      specs: [
+        { icon: "chip", label: "Frontend", value: "Next.js 14 | PixiJS (WebGL) | TypeScript" },
+        { icon: "mission", label: "Backend & AI", value: "Express.js | Mistral Large | Gemini Flash | Multi-Provider LLM" },
+        { icon: "comm", label: "Communication", value: "Web Speech API | Camb.AI TTS | Real-Time Audio" },
+        { icon: "sensor", label: "Data & Storage", value: "MongoDB | KiCad/SPICE Parsing | PDF/DOCX Vision" },
+        { icon: "structure", label: "Role", value: "Full-Stack AI Engineer — EdTech Gamification" },
+      ],
+      bullets: [
+        "Built a dual-architecture physics engine combining client-side BFS for instant visual feedback and server-side Modified Nodal Analysis (MNA) with Gaussian elimination for accurate V/I/R/P calculations.",
+        "Developed an Agentic Socratic AI Tutor using a multi-provider LLM cascade (Mistral → Cohere → OpenRouter) with a 5-round tool-calling loop to generate structured, step-by-step tutorials instead of direct answers.",
+        "Implemented a Vision Pipeline using Google Gemini Flash to parse uploaded PDFs, DOCX, and raw circuit images into structured schematics, natively supporting KiCad and SPICE formats.",
+        "Created a gamified WebGL simulation using PixiJS, rendering an 'Electron Traveler' traversing themed biomes (Forest, Lava, etc.) to represent circuit states visually.",
+        "Integrated Voice AI using Web Speech API for speech-to-text and Camb.AI TTS for real-time audio narration of circuit behavior and tutor responses.",
+      ],
+      systemFlow: [
+        "Input: User builds a circuit visually or uploads a lab manual/image.",
+        "Vision Parsing: Gemini Flash parses raw files into structured JSON schematics.",
+        "Physics Solve: Server-side MNA (Gaussian Elimination) calculates exact node voltages and currents.",
+        "Gamification: PixiJS renders the circuit as a game world, showing real-time electron flow.",
+        "AI Tutoring: Socratic AI (Mistral) explains the physics using a multi-round tool-calling loop.",
+        "Voice Output: Camb.AI narrates the AI's explanation back to the student.",
+      ],
+    } },
 ];
 
 export interface ExperienceItem {
@@ -286,12 +353,13 @@ export const experience: ExperienceItem[] = [
 
 export const skillGroups = [
   { icon: Code2, title: "Programming Languages", items: ["Python", "C / C++", "JavaScript", "Java", "SQL", "Rust"] },
-  { icon: Cpu, title: "AI & Machine Learning", items: ["LLMs", "LangGraph", "CrewAI", "AutoGen", "OpenAI API", "RAG", "NLP", "Computer Vision", "Scikit-learn", "PyTorch"] },
-  { icon: Building2, title: "Backend Development", items: ["Django", "FastAPI", "Flask", "Node.js", "Express.js", "REST APIs"] },
-  { icon: Globe, title: "Frontend Development", items: ["React.js", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "JavaScript"] },
-  { icon: Link2, title: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Supabase", "SQLite"] },
-  { icon: FlaskConical, title: "Cloud & DevOps", items: ["AWS (EC2, S3, RDS)", "Docker", "GitHub Actions", "CI/CD"] },
-  { icon: Target, title: "Tools & Technologies", items: ["Git", "Linux", "VS Code", "Arduino IDE", "KiCad", "Postman", "MATLAB"] },
+  { icon: Cpu, title: "AI & Machine Learning", items: ["LLMs", "RAG Systems", "Multi-Agent AI (AutoGen, CrewAI, LangGraph)", "Custom MCP Servers", "Computer Vision", "NLP", "Scikit-learn", "PyTorch"] },
+  { icon: Building2, title: "Backend Development", items: ["Python (FastAPI, Flask, Django)", "Node.js (Express.js)", "REST APIs", "WebSockets"] },
+  { icon: Globe, title: "Frontend Development", items: ["React.js", "Next.js", "Tailwind CSS", "JavaScript/TypeScript"] },
+  { icon: Link2, title: "Databases & Big Data", items: ["PostgreSQL", "MongoDB", "MySQL", "SQLite", "Apache Hadoop"] },
+  { icon: Target, title: "Hardware & Industrial Automation", items: ["ESP32", "AVR Microcontrollers", "Arduino C++", "PLC & HMI", "Power Electronics (MOSFETs, Drive Circuits)", "RS485 / Modbus"] },
+  { icon: FlaskConical, title: "Simulation & Power Systems", items: ["PSS\u00aeE", "MATLAB / Simulink", "Proteus", "Multisim", "KiCad"] },
+  { icon: Trophy, title: "Cloud & DevOps", items: ["AWS (EC2, S3, RDS)", "Docker", "GitHub Actions", "CI/CD"] },
 ];
 
 export const research = [

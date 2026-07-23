@@ -102,6 +102,18 @@ function ProjectsPage() {
                     </ul>
                   </>
                 )}
+                {p.details!.systemFlow && (
+                  <>
+                    <div className="mt-5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-foreground/70">
+                      <ArrowRight className="h-4 w-4 text-ember" /> System Flow
+                    </div>
+                    <ol className="mt-2 space-y-2 text-[12.5px] text-foreground/75">
+                      {p.details!.systemFlow.map((s) => (
+                        <li key={s} className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ember" />{s}</li>
+                      ))}
+                    </ol>
+                  </>
+                )}
                 {p.github && (
                   <div className="mt-5">
                     <a href={p.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-[12px] font-medium text-foreground transition-colors hover:bg-secondary">

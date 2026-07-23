@@ -60,8 +60,8 @@ const projects = [
   { img: pNexa, title: "NEXA – AI Electronics Agent", desc: "AI assistant for electronics engineers for circuit design, analysis, documentation and troubleshooting.", tags: ["LLM", "RAG", "LangChain", "AI"] },
   { img: pNeuro, title: "NeuroShield – EEG-Powered Addiction Recovery Platform", desc: "Built a mental health platform integrating a 6-agent AI therapist roundtable (AutoGen) and real-time simulated EEG brain-state monitoring (ML/SVM) for trigger detection.", tags: ["Python", "Flask", "Multi-Agent AI", "EEG/ML (SVM)", "AutoGen"] },
   { img: pHeal, title: "HealTalk — AI-Powered Recovery & Communication Platform", desc: "Developed a real-time mental health platform featuring live 6-agent AI therapy debates (WebSockets) and EEG-based emotion classification to assist users in their healing journey.", tags: ["Python", "Flask", "WebSockets", "Multi-Agent AI", "EEG Processing"] },
-  { img: pHealth, title: "HealthLink360", desc: "AI-powered healthcare platform for emergency response, pharmacy & patient management.", tags: ["Django", "AI", "Healthcare", "Web"] },
-  { img: pCircuit, title: "CircuitSathi", desc: "AI-powered learning assistant for circuit analysis, fault detection and step-by-step guidance.", tags: ["AI", "Circuit Analysis", "Web", "Python"] },
+  { img: pHealth, title: "HealthLink360 — Multi-Agent AI Healthcare Ecosystem", desc: "Developed a full-stack healthcare ecosystem using specialized AI agents and custom MCP servers to automate hospital workflows, featuring a Human-in-the-Loop architecture for emergency dispatch, maternal care, and waste video analysis.", tags: ["FastAPI", "Multi-Agent AI", "Human-in-the-Loop", "Custom MCP Servers"] },
+  { img: pCircuit, title: "Circuit Sathi ⚡ — Gamified AI Electronics Tutor", desc: "Reimagining STEM education with an interactive circuit simulator featuring a real-time physics engine (MNA), WebGL gamification, and a Socratic AI tutor that converts lab manuals into playable lessons.", tags: ["Next.js", "Express", "PixiJS", "Mistral AI", "MNA Physics Engine"] },
 ];
 
 const experience = [
@@ -105,12 +105,13 @@ const experience = [
 
 const skillGroups = [
   { icon: Code2, title: "Programming Languages", items: ["Python", "C / C++", "JavaScript", "Java", "SQL", "Rust"] },
-  { icon: Cpu, title: "AI & Machine Learning", items: ["LLMs", "LangGraph", "CrewAI", "AutoGen", "OpenAI API", "RAG", "NLP", "Computer Vision", "Scikit-learn", "PyTorch"] },
-  { icon: Building2, title: "Backend Development", items: ["Django", "FastAPI", "Flask", "Node.js", "Express.js", "REST APIs"] },
-  { icon: Globe, title: "Frontend Development", items: ["React.js", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "JavaScript"] },
-  { icon: Link2, title: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Supabase", "SQLite"] },
-  { icon: FlaskConical, title: "Cloud & DevOps", items: ["AWS (EC2, S3, RDS)", "Docker", "GitHub Actions", "CI/CD"] },
-  { icon: Target, title: "Tools & Technologies", items: ["Git", "Linux", "VS Code", "Arduino IDE", "KiCad", "Postman", "MATLAB"] },
+  { icon: Cpu, title: "AI & Machine Learning", items: ["LLMs", "RAG Systems", "Multi-Agent AI (AutoGen, CrewAI, LangGraph)", "Custom MCP Servers", "Computer Vision", "NLP", "Scikit-learn", "PyTorch"] },
+  { icon: Building2, title: "Backend Development", items: ["Python (FastAPI, Flask, Django)", "Node.js (Express.js)", "REST APIs", "WebSockets"] },
+  { icon: Globe, title: "Frontend Development", items: ["React.js", "Next.js", "Tailwind CSS", "JavaScript/TypeScript"] },
+  { icon: Link2, title: "Databases & Big Data", items: ["PostgreSQL", "MongoDB", "MySQL", "SQLite", "Apache Hadoop"] },
+  { icon: Target, title: "Hardware & Industrial Automation", items: ["ESP32", "AVR Microcontrollers", "Arduino C++", "PLC & HMI", "Power Electronics (MOSFETs, Drive Circuits)", "RS485 / Modbus"] },
+  { icon: FlaskConical, title: "Simulation & Power Systems", items: ["PSS\u00aeE", "MATLAB / Simulink", "Proteus", "Multisim", "KiCad"] },
+  { icon: Trophy, title: "Cloud & DevOps", items: ["AWS (EC2, S3, RDS)", "Docker", "GitHub Actions", "CI/CD"] },
 ];
 
 const research = [
