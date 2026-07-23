@@ -109,7 +109,7 @@ const skillGroups = [
   { icon: Building2, title: "Backend Development", items: ["Python (FastAPI, Flask, Django)", "Node.js (Express.js)", "REST APIs", "WebSockets"] },
   { icon: Globe, title: "Frontend Development", items: ["React.js", "Next.js", "Tailwind CSS", "JavaScript/TypeScript"] },
   { icon: Link2, title: "Databases & Big Data", items: ["PostgreSQL", "MongoDB", "MySQL", "SQLite", "Apache Hadoop"] },
-  { icon: Target, title: "Hardware & Industrial Automation", items: ["ESP32", "AVR Microcontrollers", "Arduino C++", "PLC & HMI", "Power Electronics (MOSFETs, Drive Circuits)", "RS485 / Modbus"] },
+  { icon: Target, title: "Hardware & Industrial Automation", items: ["ESP32", "AVR Microcontrollers", "Arduino C++", "PLC Programming (GX Works2)", "HMI Design (EasyBuilder Pro)", "Power Electronics (MOSFETs)", "RS485 / Modbus"] },
   { icon: FlaskConical, title: "Simulation & Power Systems", items: ["PSS\u00aeE", "MATLAB / Simulink", "Proteus", "Multisim", "KiCad"] },
   { icon: Trophy, title: "Cloud & DevOps", items: ["AWS (EC2, S3, RDS)", "Docker", "GitHub Actions", "CI/CD"] },
 ];
