@@ -53,10 +53,16 @@ function AchievementsPage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {achievements.map((a, i) => (
             <Card key={i}>
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--ember-soft)] text-ember">
-                <Trophy className="h-5 w-5" />
-              </span>
-              <h3 className="mt-4 font-display text-[16px] font-semibold text-primary">{a.title}</h3>
+              {a.img ? (
+                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl">
+                  <img src={a.img} alt={a.title} className="h-full w-full object-cover" />
+                </div>
+              ) : (
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--ember-soft)] text-ember">
+                  <Trophy className="h-5 w-5" />
+                </span>
+              )}
+              <h3 className={`font-display text-[16px] font-semibold text-primary ${a.img ? 'mt-3' : 'mt-4'}`}>{a.title}</h3>
               <p className="mt-1 text-[12.5px] font-medium text-ember">{a.by}</p>
               <p className="mt-2 text-[13px] leading-relaxed text-foreground/70">{a.desc}</p>
             </Card>
