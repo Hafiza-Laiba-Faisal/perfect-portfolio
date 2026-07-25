@@ -15,7 +15,7 @@ export const Route = createFileRoute("/certifications")({
   }),
 });
 
-const categories = ["All", "Hackathon", "Learning", "Internship"] as const;
+const categories = ["All", "Hackathons & Competitions", "Learning", "Internship"] as const;
 
 const bottomStats = [
   { icon: Award, n: "12", l: "Certifications", s: "Across multiple domains" },

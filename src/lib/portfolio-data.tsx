@@ -689,12 +689,12 @@ export const researchInterests = [
   "Edge AI & Real-time Systems",
 ];
 
-export type Cert = { title: string; by: string; when: string; category: "Hackathon" | "Learning" | "Internship"; link?: string; img?: string };
+export type Cert = { title: string; by: string; when: string; category: "Hackathons & Competitions" | "Learning" | "Internship"; link?: string; img?: string };
 export const certs: Cert[] = [
-  { title: "National CanSat Competition – 1st Position", by: "SUPARCO & RESOLVE", when: "2025", category: "Hackathon", img: certCanSat },
-  { title: "PeerBridge Mental Health Hackathon – Honorable Mention", by: "PeerBridge", when: "2025", category: "Hackathon", img: certPBCert },
-  { title: "DSH Hacks V1", by: "DSH Hacks", when: "2025", category: "Hackathon", img: certDSH },
-  { title: "UMT TECHVERSE", by: "UMT", when: "2025", category: "Hackathon", img: certUMT },
+  { title: "National CanSat Competition – 1st Position", by: "SUPARCO & RESOLVE", when: "2025", category: "Hackathons & Competitions", img: certCanSat },
+  { title: "PeerBridge Mental Health Hackathon – Honorable Mention", by: "PeerBridge", when: "2025", category: "Hackathons & Competitions", img: certPBCert },
+  { title: "DSH Hacks V1", by: "DSH Hacks", when: "2025", category: "Hackathons & Competitions", img: certDSH },
+  { title: "UMT TECHVERSE", by: "UMT", when: "2025", category: "Hackathons & Competitions", img: certUMT },
   { title: "Microsoft AI Product Manager", by: "Microsoft", when: "2025", category: "Learning", link: "https://coursera.org/share/13dc5c6173080cb37368d9547c5a4b82", img: certMSPM },
   { title: "Exploratory Data Analysis for Machine Learning", by: "Coursera", when: "2025", category: "Learning", link: "https://coursera.org/share/a49a626a5c5a042f2cfff4080271908e", img: certEDA },
   { title: "Generative AI for Customer Success", by: "Coursera", when: "2025", category: "Learning", link: "https://coursera.org/share/3b00272e89bf756daa44aa6b26808303", img: certGenAI },
