@@ -679,26 +679,15 @@ export const researchInterests = [
   "Edge AI & Real-time Systems",
 ];
 
-export type Cert = { title: string; by: string; when: string; category: "AI & Machine Learning" | "Cloud & DevOps" | "Programming" | "Professional"; link?: string };
+export type Cert = { title: string; by: string; when: string; category: "AI & Machine Learning" | "Cloud & DevOps" | "Programming" | "Professional"; link?: string; img?: string };
 export const certs: Cert[] = [
   { title: "Microsoft AI Product Manager", by: "Microsoft", when: "2025", category: "AI & Machine Learning", link: "https://coursera.org/share/13dc5c6173080cb37368d9547c5a4b82" },
   { title: "Exploratory Data Analysis for Machine Learning", by: "Coursera", when: "2025", category: "AI & Machine Learning", link: "https://coursera.org/share/a49a626a5c5a042f2cfff4080271908e" },
   { title: "Generative AI for Customer Success", by: "Coursera", when: "2025", category: "AI & Machine Learning", link: "https://coursera.org/share/3b00272e89bf756daa44aa6b26808303" },
-  { title: "HCIA-AI Digital Certificate", by: "Huawei", when: "2023", category: "AI & Machine Learning", link: "https://drive.google.com/file/d/1jcckzVCeIACU73SRBl5Ks2a9txWlxmg7/view?usp=sharing" },
+  { title: "Building AI Cloud Apps with Microsoft Azure", by: "Microsoft", when: "2025", category: "Cloud & DevOps", link: "", img: "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~JQZSXIHYI2FZ/CERTIFICATE_LANDING_PAGE~JQZSXIHYI2FZ.jpeg" },
+  { title: "HCIA-AI Digital Certificate", by: "Huawei", when: "2023", category: "AI & Machine Learning", link: "https://drive.google.com/file/d/1jcckzVCeIACU73SRBl5Ks2a9txWlxmg7/view?usp=sharing", img: "https://drive.google.com/thumbnail?id=1jcckzVCeIACU73SRBl5Ks2a9txWlxmg7&sz=w400" },
   { title: "Artificial Intelligence (ML & DL)", by: "KICS, UET & NVTTC", when: "2023", category: "AI & Machine Learning" },
   { title: "Rescue CPR Training (First Aid)", by: "Pakistan Red Crescent", when: "2024", category: "Professional" },
-  { title: "Generative AI with LLMs", by: "Coursera", when: "May 2024", category: "AI & Machine Learning" },
-  { title: "Building AI Agents with AutoGen", by: "DeepLearning.AI", when: "Apr 2024", category: "AI & Machine Learning" },
-  { title: "Azure AI Fundamentals (AI-900)", by: "Microsoft", when: "Jan 2024", category: "AI & Machine Learning" },
-  { title: "Huawei Certified ICT Associate – AI", by: "Huawei", when: "Dec 2023", category: "AI & Machine Learning" },
-  { title: "Machine Learning with Python", by: "IBM", when: "Nov 2023", category: "AI & Machine Learning" },
-  { title: "AWS Cloud Practitioner Essentials", by: "Amazon Web Services", when: "Oct 2023", category: "Cloud & DevOps" },
-  { title: "Introduction to Cybersecurity", by: "Cisco Networking Academy", when: "Sep 2023", category: "Cloud & DevOps" },
-  { title: "AI for Everyone", by: "Microsoft", when: "Aug 2023", category: "Cloud & DevOps" },
-  { title: "Database Systems", by: "Meta", when: "Jul 2023", category: "Programming" },
-  { title: "Responsive Web Design", by: "freeCodeCamp", when: "Jun 2023", category: "Programming" },
-  { title: "Data Analytics Essentials", by: "Simplilearn", when: "May 2023", category: "Professional" },
-  { title: "First Aid & Emergency Care", by: "Pakistan Red Crescent", when: "Apr 2023", category: "Professional" },
 ];
 
 export const achievements = [

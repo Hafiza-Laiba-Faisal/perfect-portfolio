@@ -18,7 +18,7 @@ export const Route = createFileRoute("/certifications")({
 const categories = ["All Certificates", "AI & Machine Learning", "Cloud & DevOps", "Programming", "Professional"] as const;
 
 const bottomStats = [
-  { icon: Award, n: "12+", l: "Certifications", s: "Across multiple domains" },
+  { icon: Award, n: "7", l: "Certifications", s: "Across multiple domains" },
   { icon: GraduationCap, n: "6+", l: "Platforms", s: "Global learning platforms" },
   { icon: BookOpen, n: "300+", l: "Learning Hours", s: "Invested in skill development" },
   { icon: TrendingUp, n: "100%", l: "Commitment", s: "To continuous learning" },
@@ -66,15 +66,19 @@ function CertificationsPage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {filtered.map((c) => (
             <Card key={c.title} className="!p-4">
-              <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl border border-border bg-secondary/50 p-4">
-                <div className="text-center">
-                  <div className="mx-auto mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Award className="h-5 w-5" />
+              <div className={`flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl${c.img ? '' : ' bg-secondary/50 p-4'}`}>
+                {c.img ? (
+                  <img src={c.img} alt={c.title} className="h-full w-full object-cover" />
+                ) : (
+                  <div className="text-center">
+                    <div className="mx-auto mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Award className="h-5 w-5" />
+                    </div>
+                    <div className="text-[10px] font-semibold uppercase tracking-wider text-foreground/60">Certificate of Completion</div>
+                    <div className="mt-2 font-display text-[14px] font-bold text-primary">Hafiza Laiba Faisal</div>
+                    <div className="mt-1 text-[10px] text-foreground/50">{c.by}</div>
                   </div>
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-foreground/60">Certificate of Completion</div>
-                  <div className="mt-2 font-display text-[14px] font-bold text-primary">Hafiza Laiba Faisal</div>
-                  <div className="mt-1 text-[10px] text-foreground/50">{c.by}</div>
-                </div>
+                )}
               </div>
               <div className="mt-3">
                 <h3 className="font-display text-[14px] font-semibold leading-snug text-primary">{c.title}</h3>
