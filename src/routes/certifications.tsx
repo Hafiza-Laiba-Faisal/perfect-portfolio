@@ -82,9 +82,15 @@ function CertificationsPage() {
                   <span className="inline-flex items-center gap-1"><Building2 className="h-3 w-3" /> {c.by}</span>
                   <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3" /> {c.when}</span>
                 </div>
-                <a href="#" className="mt-3 inline-flex items-center gap-1 text-[12px] font-medium text-ember hover:underline">
-                  View <ExternalLink className="h-3 w-3" />
-                </a>
+                {c.link ? (
+                  <a href={c.link} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-[12px] font-medium text-ember hover:underline">
+                    View <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : (
+                  <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-medium text-foreground/40">
+                    Link <ExternalLink className="h-3 w-3" />
+                  </span>
+                )}
               </div>
             </Card>
           ))}
