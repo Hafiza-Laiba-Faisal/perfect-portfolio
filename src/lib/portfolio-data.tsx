@@ -15,6 +15,16 @@ import pCircuit from "@/assets/project-circuit.jpg";
 import logoPenovatech from "@/assets/logo-penovatech.svg";
 import logoTenbit from "@/assets/logo-tenbit.jpg";
 import logoNtdc from "@/assets/logo-ntdc.jpg";
+import certPBCert from "@/assets/certificates/PB Hacks Winner (11).png";
+import certDSH from "@/assets/certificates/DSH Hacks V1.png";
+import certCanSat from "@/assets/certificates/suparco-cansat-competition-2025.jpeg";
+import certUMT from "@/assets/certificates/UMT-TECHVERSE.pdf";
+import certGeneric from "@/assets/certificates/Certificate - Hafiza Laiba Faisal.pdf";
+import certMSPM from "@/assets/certificates/Microsoft AI Product Manager Professional Certificate.pdf";
+import certEDA from "@/assets/certificates/Exploratory Data Analysis for Machine Learning.pdf";
+import certGenAI from "@/assets/certificates/GenerativeAI for Customer Success.pdf";
+import certAzure from "@/assets/certificates/Building AI Cloud Apps With Microsoft Azure.pdf";
+import certHuawei from "@/assets/certificates/Huawei Certification.jpg";
 
 export const navItems: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
@@ -679,15 +689,19 @@ export const researchInterests = [
   "Edge AI & Real-time Systems",
 ];
 
-export type Cert = { title: string; by: string; when: string; category: "AI & Machine Learning" | "Cloud & DevOps" | "Programming" | "Professional"; link?: string; img?: string };
+export type Cert = { title: string; by: string; when: string; category: "Hackathon" | "Learning" | "Internship"; link?: string; img?: string };
 export const certs: Cert[] = [
-  { title: "Microsoft AI Product Manager", by: "Microsoft", when: "2025", category: "AI & Machine Learning", link: "https://coursera.org/share/13dc5c6173080cb37368d9547c5a4b82" },
-  { title: "Exploratory Data Analysis for Machine Learning", by: "Coursera", when: "2025", category: "AI & Machine Learning", link: "https://coursera.org/share/a49a626a5c5a042f2cfff4080271908e" },
-  { title: "Generative AI for Customer Success", by: "Coursera", when: "2025", category: "AI & Machine Learning", link: "https://coursera.org/share/3b00272e89bf756daa44aa6b26808303" },
-  { title: "Building AI Cloud Apps with Microsoft Azure", by: "Microsoft", when: "2025", category: "Cloud & DevOps", link: "", img: "https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~JQZSXIHYI2FZ/CERTIFICATE_LANDING_PAGE~JQZSXIHYI2FZ.jpeg" },
-  { title: "HCIA-AI Digital Certificate", by: "Huawei", when: "2023", category: "AI & Machine Learning", link: "https://drive.google.com/file/d/1jcckzVCeIACU73SRBl5Ks2a9txWlxmg7/view?usp=sharing", img: "https://drive.google.com/thumbnail?id=1jcckzVCeIACU73SRBl5Ks2a9txWlxmg7&sz=w400" },
-  { title: "Artificial Intelligence (ML & DL)", by: "KICS, UET & NVTTC", when: "2023", category: "AI & Machine Learning" },
-  { title: "Rescue CPR Training (First Aid)", by: "Pakistan Red Crescent", when: "2024", category: "Professional" },
+  { title: "National CanSat Competition – 1st Position", by: "SUPARCO & RESOLVE", when: "2025", category: "Hackathon", img: certCanSat },
+  { title: "PeerBridge Mental Health Hackathon – Honorable Mention", by: "PeerBridge", when: "2025", category: "Hackathon", img: certPBCert },
+  { title: "DSH Hacks V1", by: "DSH Hacks", when: "2025", category: "Hackathon", img: certDSH },
+  { title: "UMT TECHVERSE", by: "UMT", when: "2025", category: "Hackathon", img: certUMT },
+  { title: "Microsoft AI Product Manager", by: "Microsoft", when: "2025", category: "Learning", link: "https://coursera.org/share/13dc5c6173080cb37368d9547c5a4b82", img: certMSPM },
+  { title: "Exploratory Data Analysis for Machine Learning", by: "Coursera", when: "2025", category: "Learning", link: "https://coursera.org/share/a49a626a5c5a042f2cfff4080271908e", img: certEDA },
+  { title: "Generative AI for Customer Success", by: "Coursera", when: "2025", category: "Learning", link: "https://coursera.org/share/3b00272e89bf756daa44aa6b26808303", img: certGenAI },
+  { title: "Building AI Cloud Apps with Microsoft Azure", by: "Microsoft", when: "2025", category: "Learning", img: certAzure },
+  { title: "HCIA-AI Digital Certificate", by: "Huawei", when: "2023", category: "Learning", link: "https://drive.google.com/file/d/1jcckzVCeIACU73SRBl5Ks2a9txWlxmg7/view?usp=sharing", img: certHuawei },
+  { title: "Artificial Intelligence (ML & DL)", by: "KICS, UET & NVTTC", when: "2023", category: "Learning" },
+  { title: "Rescue CPR Training (First Aid)", by: "Pakistan Red Crescent", when: "2024", category: "Learning" },
 ];
 
 export const achievements = [

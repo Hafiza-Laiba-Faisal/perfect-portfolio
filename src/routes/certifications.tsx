@@ -15,21 +15,21 @@ export const Route = createFileRoute("/certifications")({
   }),
 });
 
-const categories = ["All Certificates", "AI & Machine Learning", "Cloud & DevOps", "Programming", "Professional"] as const;
+const categories = ["All", "Hackathon", "Learning", "Internship"] as const;
 
 const bottomStats = [
-  { icon: Award, n: "7", l: "Certifications", s: "Across multiple domains" },
+  { icon: Award, n: "11", l: "Certifications", s: "Across multiple domains" },
   { icon: GraduationCap, n: "6+", l: "Platforms", s: "Global learning platforms" },
   { icon: BookOpen, n: "300+", l: "Learning Hours", s: "Invested in skill development" },
   { icon: TrendingUp, n: "100%", l: "Commitment", s: "To continuous learning" },
 ];
 
 function CertificationsPage() {
-  const [tab, setTab] = useState<string>("All Certificates");
-  const filtered = tab === "All Certificates" ? certs : certs.filter((c) => c.category === tab);
+  const [tab, setTab] = useState<string>("All");
+  const filtered = tab === "All" ? certs : certs.filter((c) => c.category === tab);
 
   const countBy = (name: string) =>
-    name === "All Certificates" ? certs.length : certs.filter((c) => c.category === name).length;
+    name === "All" ? certs.length : certs.filter((c) => c.category === name).length;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -63,12 +63,16 @@ function CertificationsPage() {
       </section>
 
       <section className="mx-auto mt-6 max-w-[1440px] px-6">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((c) => (
-            <Card key={c.title} className="!p-4">
-              <div className={`flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl${c.img ? '' : ' bg-secondary/50 p-4'}`}>
+            <Card key={c.title} className="!p-5">
+              <div className={`flex aspect-[3/2] items-center justify-center overflow-hidden rounded-xl${c.img ? '' : ' bg-secondary/50 p-4'}`}>
                 {c.img ? (
-                  <img src={c.img} alt={c.title} className="h-full w-full object-cover" />
+                  c.img.endsWith('.pdf') ? (
+                    <embed src={c.img} type="application/pdf" className="h-full w-full" />
+                  ) : (
+                    <img src={c.img} alt={c.title} className="h-full w-full object-cover" />
+                  )
                 ) : (
                   <div className="text-center">
                     <div className="mx-auto mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
