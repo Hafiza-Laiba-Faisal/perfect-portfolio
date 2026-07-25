@@ -54,8 +54,8 @@ function AchievementsPage() {
           {achievements.map((a, i) => (
             <Card key={i}>
               {a.img ? (
-                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl">
-                  <img src={a.img} alt={a.title} className="h-full w-full object-cover" />
+                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-secondary/20">
+                  <img src={a.img} alt={a.title} className="h-full w-full object-contain" />
                 </div>
               ) : (
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--ember-soft)] text-ember">

@@ -20,7 +20,8 @@ import aViero from "@/assets/Achivements/Viero-Mind-Third-Position.jpeg";
 import aPB from "@/assets/Achivements/PB Hacks Winner (11).png";
 import aStudentYear from "@/assets/Achivements/Student-of-The-Year-2025.jpeg";
 import aNtdc from "@/assets/Achivements/NTDC Internship 2025 Certificate - Hafiza Laiba Faisal.jpg";
-import pFloodGuard from "@/assets/project-flood.jpg";
+import aFlood from "@/assets/Achivements/Flood-Guard-AI.jpeg";
+
 import certPBCert from "@/assets/certificates/PB Hacks Winner (11).png";
 import certDSH from "@/assets/certificates/DSH Hacks V1.png";
 import certCanSat from "@/assets/certificates/suparco-cansat-competition-2025.jpeg";
@@ -713,7 +714,7 @@ export const certs: Cert[] = [
 
 export const achievements = [
   { title: "1st Position – National CanSat Competition", by: "SUPARCO 2025", desc: "Led the winning team in Pakistan's 1st National CanSat Competition.", img: aCanSat },
-  { title: "Innovative Award – FloodGuard AI", by: "Innovista AI Hackathon 2025", desc: "Recognized for building a multi-agent AI system for flood prediction.", img: pFloodGuard },
+  { title: "Innovative Award – FloodGuard AI", by: "Innovista AI Hackathon 2025", desc: "Recognized for building a multi-agent AI system for flood prediction.", img: aFlood },
   { title: "3rd Position – Pakathon", by: "Vieromind 2025", desc: "National hackathon focused on impactful engineering solutions.", img: aViero },
   { title: "Honorable Mention – PeerBridge Hackathon", by: "PeerBridge 2025", desc: "Recognized for an innovative mental health platform.", img: aPB },
   { title: "Student of the Year 2025", by: "University", desc: "Awarded for outstanding academic performance and extracurricular achievements.", img: aStudentYear },
