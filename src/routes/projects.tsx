@@ -245,56 +245,38 @@ function ProjectCard({ project }: { project: Project }) {
             <div className="flex items-center justify-between mb-4">
               <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
                 <Network className="h-4 w-4 text-[#D97706]" />
-                {project.details?.architectureDiagram?.title ?? "System Architecture Diagram & Pipeline"}
+                {project.details?.architectureDiagram?.title ?? "System Architecture & Design"}
               </h4>
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1E3A34] bg-white px-2.5 py-1 rounded-md border border-border/60">
-                Visual Workflow
-              </span>
             </div>
-
-            {/* Interactive Step-by-Step Architecture Pipeline */}
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {(project.details?.architectureDiagram?.steps ?? [
-                { step: "01", label: "Data Input & Ingestion", desc: "Ingests raw sensors, audio, images, or text queries." },
-                { step: "02", label: "Core Processing Engine", desc: "Executes ML models, MNA physics solver, or custom MCP servers." },
-                { step: "03", label: "AI Swarm & Logic", desc: "Multi-agent tool calling, validation, & cross-agent context handoff." },
-                { step: "04", label: "Real-time Dashboard UI", desc: "Displays live telemetry, 3D trajectories, & human-in-the-loop actions." },
-              ]).map((st, idx) => (
-                <div key={st.step} className="relative flex flex-col justify-between rounded-xl bg-white p-4 border border-border/60 shadow-2xs">
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#1E3A34] font-mono text-xs font-bold text-white">
-                        {st.step}
-                      </span>
-                      {idx < 3 && (
-                        <ArrowRight className="hidden lg:block h-4 w-4 text-[#D97706]" />
-                      )}
-                    </div>
-                    <h5 className="font-display text-xs font-bold text-[#1C2E2A] mb-1">{st.label}</h5>
-                    <p className="text-[11.5px] leading-relaxed text-foreground/75">{st.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* System Flow Sequence */}
-            {project.details?.systemFlow && (
-              <div className="mt-5 border-t border-border/50 pt-4">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-2">Step-by-Step Execution Sequence</h5>
-                <ol className="grid gap-2 sm:grid-cols-2">
-                  {project.details.systemFlow.map((sf, i) => (
-                    <li key={sf} className="flex items-start gap-2 rounded-lg bg-white p-2.5 text-xs text-foreground/80 border border-border/40">
-                      <span className="font-bold text-[#D97706]">{i + 1}.</span>
-                      <span>{sf}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            )}
 
             {/* Architecture Images Carousel */}
-            {project.details?.archImages && project.details.archImages.length > 0 && (
+            {project.details?.archImages && project.details.archImages.length > 0 ? (
               <ArchImagesCarousel images={project.details.archImages} />
+            ) : (
+              /* Interactive Step-by-Step Architecture Pipeline */
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {(project.details?.architectureDiagram?.steps ?? [
+                  { step: "01", label: "Data Input & Ingestion", desc: "Ingests raw sensors, audio, images, or text queries." },
+                  { step: "02", label: "Core Processing Engine", desc: "Executes ML models, MNA physics solver, or custom MCP servers." },
+                  { step: "03", label: "AI Swarm & Logic", desc: "Multi-agent tool calling, validation, & cross-agent context handoff." },
+                  { step: "04", label: "Real-time Dashboard UI", desc: "Displays live telemetry, 3D trajectories, & human-in-the-loop actions." },
+                ]).map((st, idx) => (
+                  <div key={st.step} className="relative flex flex-col justify-between rounded-xl bg-white p-4 border border-border/60 shadow-2xs">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#1E3A34] font-mono text-xs font-bold text-white">
+                          {st.step}
+                        </span>
+                        {idx < 3 && (
+                          <ArrowRight className="hidden lg:block h-4 w-4 text-[#D97706]" />
+                        )}
+                      </div>
+                      <h5 className="font-display text-xs font-bold text-[#1C2E2A] mb-1">{st.label}</h5>
+                      <p className="text-[11.5px] leading-relaxed text-foreground/75">{st.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         )}
@@ -459,23 +441,20 @@ function ArchImagesCarousel({ images }: { images: string[] }) {
   }, [len]);
 
   return (
-    <div className="mt-5 border-t border-border/50 pt-4">
-      <h5 className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-3">Architecture Diagrams</h5>
-      <div className="relative overflow-hidden rounded-xl bg-white border border-border/60">
-        <img
-          src={images[idx]}
-          alt={`Architecture diagram ${idx + 1}`}
-          className="h-auto w-full object-contain"
-        />
-        <div className="absolute inset-x-0 bottom-0 flex justify-center gap-2 bg-gradient-to-t from-black/40 to-transparent pb-3 pt-6">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setIdx(i)}
-              className={`h-2 rounded-full transition-all ${i === idx ? 'w-6 bg-white' : 'w-2 bg-white/60'}`}
-            />
-          ))}
-        </div>
+    <div className="relative overflow-hidden rounded-2xl bg-white border border-border/60">
+      <img
+        src={images[idx]}
+        alt={`Architecture diagram ${idx + 1}`}
+        className="h-auto w-full object-contain max-h-[600px]"
+      />
+      <div className="absolute inset-x-0 bottom-0 flex justify-center gap-2 bg-gradient-to-t from-black/40 to-transparent pb-3 pt-6">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            className={`h-2 rounded-full transition-all ${i === idx ? 'w-6 bg-white' : 'w-2 bg-white/60'}`}
+          />
+        ))}
       </div>
     </div>
   );
