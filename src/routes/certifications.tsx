@@ -68,11 +68,7 @@ function CertificationsPage() {
             <Card key={c.title} className="!p-5">
               <div className={`flex aspect-[3/2] items-center justify-center overflow-hidden rounded-xl${c.img ? '' : ' bg-secondary/50 p-4'}`}>
                 {c.img ? (
-                  c.img.endsWith('.pdf') ? (
-                    <embed src={c.img} type="application/pdf" className="h-full w-full" />
-                  ) : (
-                    <img src={c.img} alt={c.title} className="h-full w-full object-cover" />
-                  )
+                  <img src={c.img} alt={c.title} className="h-full w-full object-cover" />
                 ) : (
                   <div className="text-center">
                     <div className="mx-auto mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
