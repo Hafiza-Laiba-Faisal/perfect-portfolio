@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Zap, Linkedin, Github, Mail, ArrowRight, ArrowUpRight, Download,
@@ -244,8 +243,6 @@ function SectionHeader({ icon: Icon, title, actionText, actionLink }: { icon?: t
 }
 
 function PortfolioHome() {
-  const [activeMode, setActiveMode] = useState<"research" | "industry">("industry");
-
   return (
     <div className="min-h-screen bg-[#FBF9F4] text-[#2C3E3A] font-sans antialiased selection:bg-[#1E3A34] selection:text-white">
       {/* 1. HEADER / NAVBAR */}
@@ -280,32 +277,6 @@ function PortfolioHome() {
               </li>
             ))}
           </ul>
-
-          {/* Mode Toggles */}
-          <div className="flex items-center gap-2">
-            <div className="inline-flex rounded-full border border-border/80 bg-background/80 p-1 shadow-xs">
-              <button
-                onClick={() => setActiveMode("research")}
-                className={`rounded-full px-3 py-1 text-xs font-semibold transition-all ${
-                  activeMode === "research"
-                    ? "bg-[#1E3A34] text-white shadow-xs"
-                    : "text-foreground/70 hover:text-foreground"
-                }`}
-              >
-                Research Mode
-              </button>
-              <button
-                onClick={() => setActiveMode("industry")}
-                className={`rounded-full px-3 py-1 text-xs font-semibold transition-all ${
-                  activeMode === "industry"
-                    ? "bg-[#1E3A34] text-white shadow-xs"
-                    : "text-foreground/70 hover:text-foreground"
-                }`}
-              >
-                Industry Mode
-              </button>
-            </div>
-          </div>
         </nav>
       </header>
 
