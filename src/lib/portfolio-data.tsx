@@ -4,7 +4,7 @@ import {
   Briefcase, Code2, Cpu, FlaskConical, Trophy, Target,
   Building2, Globe, Link2,
 } from "lucide-react";
-import pCansat from "@/assets/project-cansat.jpg";
+import pCansat from "@/assets/project-cansat.png";
 import pFlood from "@/assets/project-flood.jpg";
 import pEnergy from "@/assets/project-energy.jpg";
 import pNexa from "@/assets/project-nexa.jpg";

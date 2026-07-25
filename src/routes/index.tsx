@@ -12,7 +12,7 @@ import {
 import heroBrainImg from "@/assets/hero-brain.png";
 import engineeringNotesImg from "@/assets/engineering-notes.png";
 
-import pCansat from "@/assets/project-cansat.jpg";
+import pCansat from "@/assets/project-cansat.png";
 import pFlood from "@/assets/project-flood.jpg";
 import pEnergy from "@/assets/project-energy.jpg";
 import pNexa from "@/assets/project-nexa.jpg";
