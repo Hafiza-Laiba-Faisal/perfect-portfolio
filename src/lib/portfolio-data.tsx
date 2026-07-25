@@ -24,7 +24,7 @@ import certEDA from "@/assets/certificates/Exploratory Data Analysis for Machine
 import certGenAI from "@/assets/certificates/GenerativeAI for Customer Success.jpg";
 import certAzure from "@/assets/certificates/Building AI Cloud Apps With Microsoft Azure.jpg";
 import certHuawei from "@/assets/certificates/Huawei Certification.jpg";
-import certGeneric from "@/assets/certificates/Certificate - Hafiza Laiba Faisal.jpg";
+import certGeneric from "@/assets/certificates/NTDC Internship 2025 Certificate - Hafiza Laiba Faisal.jpg";
 
 export const navItems: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
@@ -700,7 +700,8 @@ export const certs: Cert[] = [
   { title: "Generative AI for Customer Success", by: "Coursera", when: "2025", category: "Learning", link: "https://coursera.org/share/3b00272e89bf756daa44aa6b26808303", img: certGenAI },
   { title: "Building AI Cloud Apps with Microsoft Azure", by: "Microsoft", when: "2025", category: "Learning", img: certAzure },
   { title: "HCIA-AI Digital Certificate", by: "Huawei", when: "2023", category: "Learning", link: "https://drive.google.com/file/d/1jcckzVCeIACU73SRBl5Ks2a9txWlxmg7/view?usp=sharing", img: certHuawei },
-  { title: "Artificial Intelligence (ML & DL)", by: "KICS, UET & NVTTC", when: "2023", category: "Learning", img: certGeneric },
+  { title: "NTDC Internship 2025", by: "NTDC", when: "2025", category: "Internship", img: certGeneric },
+  { title: "Artificial Intelligence (ML & DL)", by: "KICS, UET & NVTTC", when: "2023", category: "Learning" },
   { title: "Rescue CPR Training (First Aid)", by: "Pakistan Red Crescent", when: "2024", category: "Learning" },
 ];
 
