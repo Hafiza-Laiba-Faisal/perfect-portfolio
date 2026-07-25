@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight, ArrowUpRight, Github, Star, Trophy, Cpu, Battery, Radio, Box, Target, Rocket,
@@ -291,6 +291,11 @@ function ProjectCard({ project }: { project: Project }) {
                 </ol>
               </div>
             )}
+
+            {/* Architecture Images Carousel */}
+            {project.details?.archImages && project.details.archImages.length > 0 && (
+              <ArchImagesCarousel images={project.details.archImages} />
+            )}
           </div>
         )}
 
@@ -440,6 +445,38 @@ function ProjectsPage() {
       </section>
 
       <SiteFooter />
+    </div>
+  );
+}
+
+function ArchImagesCarousel({ images }: { images: string[] }) {
+  const [idx, setIdx] = useState(0);
+  const len = images.length;
+
+  useEffect(() => {
+    const t = setInterval(() => setIdx((p) => (p + 1) % len), 4000);
+    return () => clearInterval(t);
+  }, [len]);
+
+  return (
+    <div className="mt-5 border-t border-border/50 pt-4">
+      <h5 className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-3">Architecture Diagrams</h5>
+      <div className="relative overflow-hidden rounded-xl bg-white border border-border/60">
+        <img
+          src={images[idx]}
+          alt={`Architecture diagram ${idx + 1}`}
+          className="h-auto w-full object-contain"
+        />
+        <div className="absolute inset-x-0 bottom-0 flex justify-center gap-2 bg-gradient-to-t from-black/40 to-transparent pb-3 pt-6">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIdx(i)}
+              className={`h-2 rounded-full transition-all ${i === idx ? 'w-6 bg-white' : 'w-2 bg-white/60'}`}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

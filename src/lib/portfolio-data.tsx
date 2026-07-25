@@ -21,6 +21,10 @@ import aPB from "@/assets/Achivements/PB Hacks Winner (11).png";
 import aStudentYear from "@/assets/Achivements/Student-of-The-Year-2025.jpeg";
 import aNtdc from "@/assets/Achivements/NTDC Internship 2025 Certificate - Hafiza Laiba Faisal.jpg";
 import aFlood from "@/assets/Achivements/Flood-Guard-AI.jpeg";
+import archCh7 from "@/assets/architectures/cansat/arch_ch7.png";
+import archCh8 from "@/assets/architectures/cansat/arch_ch8.png";
+import archCh9 from "@/assets/architectures/cansat/arch_ch9.png";
+import archCh10 from "@/assets/architectures/cansat/arch_ch10.png";
 
 import certPBCert from "@/assets/certificates/PB Hacks Winner (11).png";
 import certDSH from "@/assets/certificates/DSH Hacks V1.png";
@@ -71,6 +75,7 @@ export type Project = {
     specs?: { icon: "chip" | "battery" | "sensor" | "structure" | "comm" | "mission"; label: string; value: string }[];
     bullets?: string[];
     systemFlow?: string[];
+    archImages?: string[];
     architectureDiagram?: {
       title: string;
       steps: { step: string; label: string; desc: string }[];
@@ -118,6 +123,7 @@ export const projects: Project[] = [
         "Telemetry Transmission: Raw data packetized and streamed over ESP-NOW RF link.",
         "Ground Station 3D Render: Python/WebGL dashboard displays real-time 3D flight trajectory.",
       ],
+      archImages: [archCh7, archCh8, archCh9, archCh10],
       architectureDiagram: {
         title: "CanSat Telemetry & Flight System Architecture",
         steps: [
