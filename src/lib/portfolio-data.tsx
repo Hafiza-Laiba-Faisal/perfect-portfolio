@@ -19,6 +19,8 @@ import aCanSat from "@/assets/Achivements/suparco-cansat-competition-2025.jpeg";
 import aViero from "@/assets/Achivements/Viero-Mind-Third-Position.jpeg";
 import aPB from "@/assets/Achivements/PB Hacks Winner (11).png";
 import aStudentYear from "@/assets/Achivements/Student-of-The-Year-2025.jpeg";
+import aNtdc from "@/assets/Achivements/NTDC Internship 2025 Certificate - Hafiza Laiba Faisal.jpg";
+import pFloodGuard from "@/assets/project-flood.jpg";
 import certPBCert from "@/assets/certificates/PB Hacks Winner (11).png";
 import certDSH from "@/assets/certificates/DSH Hacks V1.png";
 import certCanSat from "@/assets/certificates/suparco-cansat-competition-2025.jpeg";
@@ -711,12 +713,11 @@ export const certs: Cert[] = [
 
 export const achievements = [
   { title: "1st Position – National CanSat Competition", by: "SUPARCO 2025", desc: "Led the winning team in Pakistan's 1st National CanSat Competition.", img: aCanSat },
-  { title: "Innovative Award – FloodGuard AI", by: "Innovista AI Hackathon 2025", desc: "Recognized for building a multi-agent AI system for flood prediction." },
+  { title: "Innovative Award – FloodGuard AI", by: "Innovista AI Hackathon 2025", desc: "Recognized for building a multi-agent AI system for flood prediction.", img: pFloodGuard },
   { title: "3rd Position – Pakathon", by: "Vieromind 2025", desc: "National hackathon focused on impactful engineering solutions.", img: aViero },
   { title: "Honorable Mention – PeerBridge Hackathon", by: "PeerBridge 2025", desc: "Recognized for an innovative mental health platform.", img: aPB },
   { title: "Student of the Year 2025", by: "University", desc: "Awarded for outstanding academic performance and extracurricular achievements.", img: aStudentYear },
-  { title: "Grid Girls Program", by: "NTDC 2025", desc: "Selected among top interns nationwide for the Grid Girls Internship." },
-  { title: "Dean's Honor Roll", by: "University 2023 – 2025", desc: "Consistent academic excellence across multiple semesters." },
+  { title: "Grid Girls Program", by: "NTDC 2025", desc: "Selected among top interns nationwide for the Grid Girls Internship.", img: aNtdc },
 ];
 
 /* ---------- Shared UI ---------- */
