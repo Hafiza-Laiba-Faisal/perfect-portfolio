@@ -709,7 +709,6 @@ export const achievements = [
   { title: "1st Position – National CanSat Competition", by: "SUPARCO 2025", desc: "Led the winning team in Pakistan's 1st National CanSat Competition." },
   { title: "Innovative Award – FloodGuard AI", by: "Innovista AI Hackathon 2025", desc: "Recognized for building a multi-agent AI system for flood prediction." },
   { title: "3rd Position – Pakathon", by: "Vieromind 2025", desc: "National hackathon focused on impactful engineering solutions." },
-  { title: "Best Research Paper", by: "ICCSAI 2024", desc: "Award for EEG-based addiction detection using hybrid deep learning." },
   { title: "Grid Girls Program", by: "NTDC 2025", desc: "Selected among top interns nationwide for the Grid Girls Internship." },
   { title: "Dean's Honor Roll", by: "University 2023 – 2025", desc: "Consistent academic excellence across multiple semesters." },
 ];
