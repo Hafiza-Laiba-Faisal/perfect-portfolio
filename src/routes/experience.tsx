@@ -18,7 +18,7 @@ export const Route = createFileRoute("/experience")({
   }),
 });
 
-export function ExperiencePage() {
+function ExperiencePage() {
   const search = Route.useSearch();
   const [activeTab, setActiveTab] = useState<string>(search.company || "All");
 

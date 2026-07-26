@@ -241,18 +241,96 @@ function ProjectCard({ project }: { project: Project }) {
 
         {/* TAB 3: SYSTEM ARCHITECTURE DIAGRAM */}
         {activeTab === "architecture" && (
-          <div className="rounded-2xl bg-[#FAF7F2]/80 p-5 border border-border/50">
-            <div className="flex items-center justify-between mb-4">
+          <div className="rounded-2xl bg-[#FAF7F2]/80 p-5 border border-border/50 space-y-6">
+            <div className="flex items-center justify-between mb-2">
               <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
                 <Network className="h-4 w-4 text-[#D97706]" />
                 {project.details?.architectureDiagram?.title ?? "System Architecture & Design"}
               </h4>
             </div>
 
+            {/* Visual Architecture Flowchart Box for NIGHEBAN */}
+            {project.title.includes("NIGHEBAN") && !project.details?.archImages && (
+              <div className="rounded-2xl border border-emerald-900/20 bg-emerald-950/5 p-5 dark:bg-emerald-950/20 shadow-2xs space-y-6">
+                
+                {/* Top Central Hub: Nigheban Cortex */}
+                <div className="text-center rounded-xl border border-emerald-800/30 bg-emerald-900/10 p-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-800 text-white font-mono text-xs font-bold uppercase tracking-wider mb-2">
+                    🧠 Nigheban Cortex Core (Central Orchestration Brain)
+                  </div>
+                  <p className="text-xs text-foreground/80 font-medium max-w-2xl mx-auto">
+                    FastAPI Async Orchestrator • Custom MCP Server • LangChain / LlamaIndex • Gemini Moderation Guardrails • MongoDB &amp; gRPC
+                  </p>
+                </div>
+
+                {/* 4 Agent Swarms Grid */}
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="rounded-xl border border-blue-900/20 bg-blue-950/5 p-3.5 space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-blue-900 dark:text-blue-300">
+                      <span>🛰️ 1. Hydro-Met Agent</span>
+                    </div>
+                    <div className="text-[11px] font-semibold text-foreground/90">Detection &amp; Forecasting</div>
+                    <p className="text-[11px] text-foreground/75 leading-relaxed">
+                      LSTM/GRU Time-Series &amp; CNN Flood Risk Classification from Sentinel-2 &amp; Google Earth Engine.
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-amber-900/20 bg-amber-950/5 p-3.5 space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-amber-900 dark:text-amber-300">
+                      <span>🗺️ 2. Evacuation Agent</span>
+                    </div>
+                    <div className="text-[11px] font-semibold text-foreground/90">Relocation &amp; Transport</div>
+                    <p className="text-[11px] text-foreground/75 leading-relaxed">
+                      PostGIS / OSRM dry-land route optimization, shelter assignment &amp; automated meeting notices.
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-emerald-900/20 bg-emerald-950/5 p-3.5 space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-900 dark:text-emerald-300">
+                      <span>⛺ 3. Relief Agent</span>
+                    </div>
+                    <div className="text-[11px] font-semibold text-foreground/90">Camp &amp; Inventory Management</div>
+                    <p className="text-[11px] text-foreground/75 leading-relaxed">
+                      Prophet ML evacuee demand forecasting for food, tents &amp; medical aid with Kafka live updates.
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border border-purple-900/20 bg-purple-950/5 p-3.5 space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-purple-900 dark:text-purple-300">
+                      <span>🏠 4. Reconstruction Agent</span>
+                    </div>
+                    <div className="text-[11px] font-semibold text-foreground/90">Resettlement &amp; Return</div>
+                    <p className="text-[11px] text-foreground/75 leading-relaxed">
+                      OpenCV &amp; GDAL/Rasterio CNN damage assessment on drone/satellite imagery for safe return.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Stakeholder Multi-Tier Flow */}
+                <div className="rounded-xl border border-border/60 bg-white/80 p-4">
+                  <div className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-2 text-center">
+                    Multi-Level Stakeholder Coordination Pipeline
+                  </div>
+                  <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-foreground/80">
+                    <span className="rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 px-2.5 py-1">Federal (NDMA / PM Office)</span>
+                    <span>➔</span>
+                    <span className="rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-900 dark:text-blue-300 px-2.5 py-1">Provincial (PDMA / Health)</span>
+                    <span>➔</span>
+                    <span className="rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 px-2.5 py-1">District (DC / DDMU)</span>
+                    <span>➔</span>
+                    <span className="rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-900 dark:text-purple-300 px-2.5 py-1">Union Council (Rescue 1122)</span>
+                    <span>➔</span>
+                    <span className="rounded-lg bg-secondary border border-border/60 px-2.5 py-1">Community &amp; Welfare NGOs</span>
+                  </div>
+                </div>
+
+              </div>
+            )}
+
             {/* Architecture Images Carousel */}
             {project.details?.archImages && project.details.archImages.length > 0 ? (
               <ArchImagesCarousel images={project.details.archImages} />
-            ) : (
+            ) : project.details?.architectureDiagram?.steps ? (
               /* Interactive Step-by-Step Architecture Pipeline */
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {(project.details?.architectureDiagram?.steps ?? [
@@ -277,7 +355,7 @@ function ProjectCard({ project }: { project: Project }) {
                   </div>
                 ))}
               </div>
-            )}
+            ) : null}
           </div>
         )}
 

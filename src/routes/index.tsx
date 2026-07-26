@@ -6,7 +6,7 @@ import {
   GraduationCap, Building2, Send, Twitter, Globe, Eye, Sparkles,
   Bot, Server, Activity, Radio, HeartPulse, Compass, Lightbulb,
   Binary, Wrench, Layers, CheckCircle2, Terminal, ShieldAlert,
-  Clock, ArrowRightCircle
+  Clock, ArrowRightCircle, Atom, Dna, Wifi, Brain, Database, Network, Satellite, Microscope
 } from "lucide-react";
 
 import heroBrainImg from "@/assets/hero-brain.png";
@@ -24,6 +24,7 @@ import pCircuit from "@/assets/project-circuit.jpg";
 import logoPenovatech from "@/assets/logo-penovatech.svg";
 import logoTenbit from "@/assets/logo-tenbit.jpg";
 import logoNtdc from "@/assets/logo-ntdc.jpg";
+import cvPdf from "@/assets/HafizaLaibaFaisal_CVJul26.pdf";
 
 export const Route = createFileRoute("/")({
   component: PortfolioHome,
@@ -51,15 +52,14 @@ export const Route = createFileRoute("/")({
 
 const navLinks = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/" },
+  { label: "About", to: "/about" },
   { label: "Projects", to: "/projects" },
   { label: "Research", to: "/research" },
   { label: "Experience", to: "/experience" },
-  { label: "Skills", to: "/" },
-  { label: "Notes", to: "/" },
-  { label: "Publications", to: "/research" },
+  { label: "Skills", to: "/skills" },
+  { label: "Notes", to: "/notes" },
   { label: "Resume", to: "/experience" },
-  { label: "Contact", to: "/" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const stats = [
@@ -71,16 +71,17 @@ const stats = [
 ];
 
 const researchInterests = [
-  { title: "Multi-Agent Systems", icon: Users },
-  { title: "Agentic AI", icon: Bot },
-  { title: "Model Context Protocol (MCP)", icon: Server },
-  { title: "Embedded AI", icon: Cpu },
-  { title: "Robotics", icon: Compass },
-  { title: "Computer Vision", icon: Eye },
-  { title: "Signal Processing", icon: Activity },
-  { title: "Power Systems AI", icon: Zap },
-  { title: "Edge AI", icon: Radio },
-  { title: "AI for Healthcare", icon: HeartPulse },
+  { title: "Self-Healing Smart Grids", icon: Zap },
+  { title: "Quantum Technologies & Quantum Sensing", icon: Atom },
+  { title: "Molecular Communication & Nano-Scale Networks", icon: Dna },
+  { title: "Advanced Functional Materials (MOFs) for Energy Storage", icon: Database },
+  { title: "Smart Sensing & Sustainable Infrastructure", icon: Wifi },
+  { title: "Neuromorphic Computing & Brain-Inspired Hardware", icon: Brain },
+  { title: "Physics-Informed AI for Engineering Systems", icon: Activity },
+  { title: "Swarm Robotics & Embodied AI", icon: Network },
+  { title: "Brain–Computer Interfaces (BCI)", icon: Cpu },
+  { title: "Space Systems Engineering", icon: Satellite },
+  { title: "AI for Scientific Discovery", icon: Microscope },
 ];
 
 const featuredProjects = [
@@ -643,15 +644,15 @@ function PortfolioHome() {
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <a
-                href="mailto:hafizalaibafaisal@gmail.com"
+              <Link
+                to="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#F59E0B] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#1E3A34] shadow-xs transition-transform hover:scale-[1.02] hover:bg-[#D97706]"
               >
                 Get in Touch <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
 
               <div className="flex items-center gap-2 border-t border-white/10 pt-3 sm:border-t-0 sm:pt-0">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                <a href="https://linkedin.com/in/hafiza-laiba-faisal" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                   <Linkedin className="h-4 w-4 text-white" />
                 </a>
                 <a href="https://github.com/Hafiza-Laiba-Faisal" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
@@ -666,7 +667,7 @@ function PortfolioHome() {
         </div>
       </section>
 
-      {/* 11. FOOTER */}
+      {/* 12. FOOTER */}
       <footer className="mx-auto mt-12 max-w-[1440px] px-6 pb-8">
         <div className="grid gap-8 rounded-3xl border border-border/60 bg-white p-8 md:grid-cols-4">
           {/* Logo & Bio */}
@@ -701,27 +702,9 @@ function PortfolioHome() {
           <div>
             <h4 className="font-display text-xs font-bold uppercase tracking-wider text-[#1C2E2A] mb-3">Resources</h4>
             <ul className="space-y-1.5 text-[12.5px] text-foreground/75">
-              <li><a href="#" className="hover:text-[#1E3A34]">Research CV (PDF)</a></li>
-              <li><a href="#" className="hover:text-[#1E3A34]">Industry Resume (PDF)</a></li>
-              <li><a href="#" className="hover:text-[#1E3A34]">Portfolio (PDF)</a></li>
+              <li><a href={cvPdf} download className="hover:text-[#1E3A34]">Research CV (PDF)</a></li>
+              <li><a href={cvPdf} download className="hover:text-[#1E3A34]">Industry Resume (PDF)</a></li>
             </ul>
-          </div>
-
-          {/* Connect & Callout */}
-          <div className="flex flex-col justify-between">
-            <div>
-              <h4 className="font-display text-xs font-bold uppercase tracking-wider text-[#1C2E2A] mb-3">Connect</h4>
-              <ul className="space-y-1.5 text-[12.5px] text-foreground/75">
-                <li><a href="https://github.com/Hafiza-Laiba-Faisal" target="_blank" rel="noopener noreferrer" className="hover:text-[#1E3A34]">GitHub</a></li>
-                <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1E3A34]">LinkedIn</a></li>
-                <li><a href="mailto:hafizalaibafaisal@gmail.com" className="hover:text-[#1E3A34]">Email</a></li>
-              </ul>
-            </div>
-
-            <div className="mt-4 rounded-xl bg-[#FAF7F2] p-3 text-[12px] font-medium text-[#1E3A34] border border-border/60 flex items-center justify-between">
-              <span>Let's build something meaningful together! 🚀</span>
-              <Send className="h-3.5 w-3.5 text-[#D97706]" />
-            </div>
           </div>
         </div>
       </footer>
