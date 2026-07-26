@@ -824,12 +824,16 @@ export function SiteHeader({ active }: { active?: string }) {
         </ul>
 
         <div className="ml-auto flex items-center gap-2">
-          {[Linkedin, Github, Mail].map((I, i) => (
-            <a key={i} href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground/70 transition-colors hover:text-primary">
+          {[
+            { icon: Linkedin, href: "https://linkedin.com/in/hafiza-laiba-faisal" },
+            { icon: Github, href: "https://github.com/Hafiza-Laiba-Faisal" },
+            { icon: Mail, href: "mailto:hafizalaibafaisal@gmail.com" },
+          ].map(({ icon: I, href }, i) => (
+            <a key={i} href={href} target="_blank" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground/70 transition-colors hover:text-primary">
               <I className="h-4 w-4" />
             </a>
           ))}
-          <Link to="/" hash="contact" className="ml-2 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]">
+          <Link to="/contact" className="ml-2 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]">
             Let's Connect
           </Link>
         </div>
