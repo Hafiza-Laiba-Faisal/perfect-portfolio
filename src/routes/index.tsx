@@ -702,8 +702,8 @@ function PortfolioHome() {
           <div>
             <h4 className="font-display text-xs font-bold uppercase tracking-wider text-[#1C2E2A] mb-3">Resources</h4>
             <ul className="space-y-1.5 text-[12.5px] text-foreground/75">
-              <li><a href={cvPdf} download className="hover:text-[#1E3A34]">Research CV (PDF)</a></li>
-              <li><a href={cvPdf} download className="hover:text-[#1E3A34]">Industry Resume (PDF)</a></li>
+              <li><button type="button" onClick={() => { const a = document.createElement("a"); a.href = cvPdf; a.download = "HafizaLaibaFaisal_CV.pdf"; a.click(); }} className="hover:text-[#1E3A34] cursor-pointer bg-transparent border-none p-0 text-[12.5px] text-foreground/75">Research CV (PDF)</button></li>
+              <li><button type="button" onClick={() => { const a = document.createElement("a"); a.href = cvPdf; a.download = "HafizaLaibaFaisal_CV.pdf"; a.click(); }} className="hover:text-[#1E3A34] cursor-pointer bg-transparent border-none p-0 text-[12.5px] text-foreground/75">Industry Resume (PDF)</button></li>
             </ul>
           </div>
         </div>
