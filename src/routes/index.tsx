@@ -653,7 +653,7 @@ function PortfolioHome() {
               </Link>
 
               <div className="flex items-center gap-2 border-t border-white/10 pt-3 sm:border-t-0 sm:pt-0">
-                <a href="https://linkedin.com/in/hafiza-laiba-faisal" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                <a href="https://www.linkedin.com/in/h-laiba-faisal/" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                   <Linkedin className="h-4 w-4 text-white" />
                 </a>
                 <a href="https://github.com/Hafiza-Laiba-Faisal" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">

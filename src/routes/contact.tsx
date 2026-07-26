@@ -85,7 +85,7 @@ function ContactPage() {
                   <Github className="h-4 w-4" /> GitHub
                 </a>
                 <a
-                  href="https://linkedin.com/in/hafiza-laiba-faisal"
+                  href="https://www.linkedin.com/in/h-laiba-faisal/"
                   target="_blank"
                   className="flex items-center gap-2 rounded-xl border border-border/60 bg-[#FAF7F2] px-4 py-2.5 text-xs font-semibold text-foreground/70 hover:border-[#D97706]/40 hover:text-primary transition-all"
                 >

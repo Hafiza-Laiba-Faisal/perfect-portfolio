@@ -825,7 +825,7 @@ export function SiteHeader({ active }: { active?: string }) {
 
         <div className="ml-auto flex items-center gap-2">
           {[
-            { icon: Linkedin, href: "https://linkedin.com/in/hafiza-laiba-faisal" },
+            { icon: Linkedin, href: "https://www.linkedin.com/in/h-laiba-faisal/" },
             { icon: Github, href: "https://github.com/Hafiza-Laiba-Faisal" },
             { icon: Mail, href: "mailto:hafizalaibafaisal@gmail.com" },
           ].map(({ icon: I, href }, i) => (
