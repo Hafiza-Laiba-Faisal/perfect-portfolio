@@ -312,12 +312,13 @@ function PortfolioHome() {
                 >
                   View My Work <ArrowRight className="h-4 w-4" />
                 </a>
-                <Link
-                  to="/experience"
-                  className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#1C2E2A] shadow-xs transition-transform hover:bg-[#F4EFE6]"
+                <button
+                  type="button"
+                  onClick={() => { const a = document.createElement("a"); a.href = cvPdf; a.download = "HafizaLaibaFaisal_CV.pdf"; a.click(); }}
+                  className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#1C2E2A] shadow-xs transition-transform hover:bg-[#F4EFE6] cursor-pointer"
                 >
                   <Download className="h-4 w-4 text-[#D97706]" /> Download CV
-                </Link>
+                </button>
               </div>
 
               {/* Contact / Location Meta Pills */}

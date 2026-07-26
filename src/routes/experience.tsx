@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, MapPin, Download, Briefcase, Code2, ShieldAlert, TrendingUp, Sparkles, CheckCircle2, Building2 } from "lucide-react";
 import { experience, SiteHeader, SiteFooter, PageHeader, Card } from "@/lib/portfolio-data";
+import cvPdf from "@/assets/HafizaLaibaFaisal_CVJul26.pdf";
 
 export const Route = createFileRoute("/experience")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -67,7 +68,11 @@ function ExperiencePage() {
         title="Work Experience"
         description="Structured overview of production engineering roles, major contributions, technical challenges, tech stack, and real-world impact."
         action={
-          <button className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/40 shadow-xs">
+          <button
+            type="button"
+            onClick={() => { const a = document.createElement("a"); a.href = cvPdf; a.download = "HafizaLaibaFaisal_CV.pdf"; a.click(); }}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/40 shadow-xs cursor-pointer"
+          >
             <Download className="h-4 w-4" /> Download Resume
           </button>
         }
