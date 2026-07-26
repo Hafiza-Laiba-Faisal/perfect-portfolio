@@ -11,7 +11,6 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import favicon from "@/assets/logo-main.png";
 
 function NotFoundComponent() {
   return (
@@ -96,7 +95,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: favicon, type: "image/png" },
+      {
+        rel: "icon",
+        href: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><circle cx="18" cy="18" r="17" fill="white" stroke="#1E3A34" stroke-width="1.5"/><text x="18" y="22" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="800" fill="#1E3A34">HLF</text></svg>'),
+        type: "image/svg+xml",
+      },
     ],
   }),
   shellComponent: RootShell,
