@@ -7,7 +7,7 @@ export const Route = createFileRoute("/certifications")({
   component: CertificationsPage,
   head: () => ({
     meta: [
-      { title: "Certifications — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "Professional certifications reflecting continuous learning and growth." },
       { property: "og:title", content: "Certifications — Hafiza Laiba Faisal" },
       { property: "og:description", content: "Certifications across AI, Cloud, Programming, and Professional domains." },

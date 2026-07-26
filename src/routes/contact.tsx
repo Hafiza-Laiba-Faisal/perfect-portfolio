@@ -7,7 +7,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "Get in touch with Hafiza Laiba Faisal for collaborations, research opportunities, or just a chat." },
       { property: "og:title", content: "Contact — Hafiza Laiba Faisal" },
       { property: "og:description", content: "Get in touch with Hafiza Laiba Faisal for collaborations, research opportunities, or just a chat." },

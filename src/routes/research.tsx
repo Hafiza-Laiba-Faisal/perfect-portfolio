@@ -6,7 +6,7 @@ export const Route = createFileRoute("/research")({
   component: ResearchPage,
   head: () => ({
     meta: [
-      { title: "Research Experience — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "Research in intelligent systems, signal processing and AI-driven solutions." },
       { property: "og:title", content: "Research Experience — Hafiza Laiba Faisal" },
       { property: "og:description", content: "Exploring intelligent systems and AI-driven solutions to solve real-world challenges." },

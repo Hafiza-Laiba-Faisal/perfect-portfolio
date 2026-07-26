@@ -6,7 +6,7 @@ export const Route = createFileRoute("/notes")({
   component: NotesPage,
   head: () => ({
     meta: [
-      { title: "Notes — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "Engineering notes, research logs, and technical writings by Hafiza Laiba Faisal." },
       { property: "og:title", content: "Notes — Hafiza Laiba Faisal" },
       { property: "og:description", content: "Engineering notes, research logs, and technical writings by Hafiza Laiba Faisal." },

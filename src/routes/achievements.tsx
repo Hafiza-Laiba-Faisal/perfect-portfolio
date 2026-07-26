@@ -6,7 +6,7 @@ export const Route = createFileRoute("/achievements")({
   component: AchievementsPage,
   head: () => ({
     meta: [
-      { title: "Achievements — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "Awards, honors and recognitions across engineering and AI." },
       { property: "og:title", content: "Achievements — Hafiza Laiba Faisal" },
       { property: "og:description", content: "Awards, honors and recognitions across engineering and AI." },

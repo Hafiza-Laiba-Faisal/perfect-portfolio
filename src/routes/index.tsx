@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
   component: PortfolioHome,
   head: () => ({
     meta: [
-      { title: "Hafiza Laiba Faisal — Engineering Intelligence Portfolio" },
+      { title: "Hafiza Laiba Faisal" },
       {
         name: "description",
         content:

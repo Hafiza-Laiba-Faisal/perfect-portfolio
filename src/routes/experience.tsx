@@ -10,7 +10,7 @@ export const Route = createFileRoute("/experience")({
   component: ExperiencePage,
   head: () => ({
     meta: [
-      { title: "Work Experience — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "Engineering experience of Hafiza Laiba Faisal across AI systems, full-stack backends, and power system planning." },
       { property: "og:title", content: "Work Experience — Hafiza Laiba Faisal" },
       { property: "og:description", content: "Evidence-driven engineering experience structured by role overview, key contributions, challenges, tech stack, and real-world impact." },

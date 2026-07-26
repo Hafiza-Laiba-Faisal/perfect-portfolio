@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Hafiza Laiba Faisal — Electrical Engineer & AI Developer" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "Portfolio of Hafiza Laiba Faisal — Electrical Engineer & AI Developer working on aerospace, embedded systems, and machine learning." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Hafiza Laiba Faisal — Electrical Engineer & AI Developer" },

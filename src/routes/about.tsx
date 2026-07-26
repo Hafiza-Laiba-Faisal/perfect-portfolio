@@ -6,7 +6,7 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "About Hafiza Laiba Faisal — engineer, researcher, and builder of intelligent systems." },
       { property: "og:title", content: "About — Hafiza Laiba Faisal" },
       { property: "og:description", content: "About Hafiza Laiba Faisal — engineer, researcher, and builder of intelligent systems." },

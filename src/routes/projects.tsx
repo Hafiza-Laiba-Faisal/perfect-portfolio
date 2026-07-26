@@ -11,7 +11,7 @@ export const Route = createFileRoute("/projects")({
   component: ProjectsPage,
   head: () => ({
     meta: [
-      { title: "Selected Projects — Hafiza Laiba Faisal" },
+      { title: "Hafiza Laiba Faisal" },
       { name: "description", content: "A collection of engineering and AI-powered projects by Hafiza Laiba Faisal with architectural diagrams and tech stacks." },
       { property: "og:title", content: "Selected Projects — Hafiza Laiba Faisal" },
       { property: "og:description", content: "Engineering solutions and AI-powered innovations." },
