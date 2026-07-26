@@ -57,8 +57,8 @@ const navLinks = [
   { label: "Research", to: "/research" },
   { label: "Experience", to: "/experience" },
   { label: "Skills", to: "/skills" },
-  { label: "Notes", to: "/notes" },
-  { label: "Resume", to: "/experience" },
+  { label: "Achievements", to: "/achievements" },
+  { label: "Certifications", to: "/certifications" },
   { label: "Contact", to: "/contact" },
 ];
 
