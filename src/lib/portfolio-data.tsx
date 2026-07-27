@@ -741,13 +741,7 @@ export const skillGroups = [
 ];
 
 export const research = [
-  { title: "Wireless Molecular Communication Systems: Performance Analysis for In-Body & IoT Applications", desc: "A comprehensive simulation-based analysis of molecular communication systems using stochastic channel models with drift and diffusion dynamics, evaluating bit error rate and capacity across in-body and IoT scenarios.", tags: ["Molecular Communication", "Nanocommunications", "Simulation", "Channel Modeling", "Python"], status: "Published", when: "Apr 2026" },
-  { title: "EEG-Based Cognitive Load & Confusion Detection", desc: "A deep learning approach to detect cognitive load and confusion using EEG signals for adaptive learning and real-time feedback systems.", tags: ["EEG", "Signal Processing", "Deep Learning", "Python", "MNE"], status: "Active Research", when: "Jan 2025" },
-  { title: "Multi-Agent AI System for Flood Prediction & Evacuation Planning", desc: "Developed a multi-agent framework using satellite & sensor data for flood forecasting, risk assessment and intelligent evacuation route optimization.", tags: ["Multi-Agent Systems", "Remote Sensing", "Python", "GeoSpatial AI", "Simulation"], status: "Completed", when: "Oct 2024" },
-  { title: "Smart Energy Audit System with IoT & Analytics", desc: "IoT-based energy monitoring system using ESP32 and PZEM-004T with real-time analytics dashboard for efficient energy management.", tags: ["IoT", "ESP32", "PZEM-004T", "Cloud", "Data Analytics"], status: "Prototype Completed", when: "Aug 2024" },
-  { title: "NEXA – AI Electronics Engineering Agent", desc: "An AI agent that assists in circuit design, analysis, documentation and troubleshooting using LLMs and retrieval-augmented generation.", tags: ["LLM", "RAG", "LangChain", "Electronics AI", "Python"], status: "Ongoing Research", when: "Feb 2024" },
-  { title: "EEG-Based Addiction Detection Using Hybrid Deep Learning", desc: "Hybrid CNN-LSTM architecture for classifying addiction-related EEG patterns.", tags: ["EEG", "CNN", "LSTM", "Deep Learning"], status: "Published", when: "ICCSAI 2024" },
-  { title: "Sustainable Buildings – Smart IoT Monitoring", desc: "IoT sensor mesh for energy efficiency in commercial buildings.", tags: ["IoT", "Sustainability", "Buildings"], status: "Published", when: "IEEE ICEE 2025" },
+  { title: "Machine Learning-Based Symbol Detection in Drift-Enhanced Wireless Molecular Communication Systems", desc: "Designed and implemented a simulation-based wireless molecular communication system to investigate machine learning-driven symbol synchronization and detection in diffusion-drift channels, evaluating multiple supervised learning algorithms for reliable symbol detection under varying transmission distances and noise conditions.", tags: ["Molecular Communication", "Machine Learning", "Python", "Scikit-learn", "Signal Processing"], status: "Completed", when: "2026" },
 ];
 
 export const researchInterests = [
