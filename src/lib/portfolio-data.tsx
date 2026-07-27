@@ -741,7 +741,23 @@ export const skillGroups = [
 ];
 
 export const research = [
-  { title: "Machine Learning-Based Symbol Detection in Drift-Enhanced Wireless Molecular Communication Systems", desc: "Designed and implemented a simulation-based wireless molecular communication system to investigate machine learning-driven symbol synchronization and detection in diffusion-drift channels, evaluating multiple supervised learning algorithms for reliable symbol detection under varying transmission distances and noise conditions.", tags: ["Molecular Communication", "Machine Learning", "Python", "Scikit-learn", "Signal Processing"], status: "Completed", when: "2026" },
+  {
+    title: "Machine Learning-Based Symbol Detection in Drift-Enhanced Wireless Molecular Communication Systems",
+    desc: "Designed and implemented a simulation-based wireless molecular communication system to investigate machine learning-driven symbol synchronization and detection in diffusion-drift channels, evaluating multiple supervised learning algorithms for reliable symbol detection under varying transmission distances and noise conditions.",
+    tags: ["Molecular Communication", "Machine Learning", "Python", "Scikit-learn", "Signal Processing"],
+    status: "Completed",
+    when: "2026",
+    overview: "Designed and implemented a simulation-based wireless molecular communication system to investigate machine learning-driven symbol synchronization and detection in diffusion-drift channels. The project models nanoscale communication under varying transmission distances and noise conditions and evaluates multiple supervised learning algorithms for reliable symbol detection.",
+    contributions: [
+      "Developed a physics-based diffusion-drift molecular communication simulator using On-Off Keying (OOK) modulation.",
+      "Generated a synthetic dataset of 3,000 communication samples with varying transmission distances and noise levels.",
+      "Implemented and evaluated Logistic Regression, Support Vector Machine (SVM), Random Forest, Gradient Boosting, and Neural Networks for symbol synchronization and detection.",
+      "Performed comprehensive performance evaluation using confusion matrices, ROC curves, precision-recall analysis, BER analysis, PCA, feature importance, learning curves, and robustness analysis.",
+      "Achieved 99.2% classification accuracy with Logistic Regression while maintaining low computational complexity suitable for resource-constrained nanonetwork applications.",
+    ],
+    techs: ["Python", "NumPy", "Scikit-learn", "Matplotlib", "Plotly", "Machine Learning", "Signal Processing", "Wireless Molecular Communication"],
+    areas: ["Machine Learning", "Molecular Communication", "Internet of Nano Things (IoNT)", "Wireless Communication", "Computational Modeling"],
+  },
 ];
 
 export const researchInterests = [
