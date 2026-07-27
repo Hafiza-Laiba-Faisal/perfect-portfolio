@@ -6,7 +6,6 @@ import {
 } from "lucide-react";
 import pCansat from "@/assets/project-cansat.png";
 import pFlood from "@/assets/project-flood.jpg";
-import molecularPdf from "@/assets/Laiba,Dua,Fatima Afzal,Maha_cep.pdf";
 import pEnergy from "@/assets/project-energy.jpg";
 import pNexa from "@/assets/project-nexa.jpg";
 import pNeuro from "@/assets/project-neuro.jpg";
@@ -742,7 +741,7 @@ export const skillGroups = [
 ];
 
 export const research = [
-  { title: "Wireless Molecular Communication Systems: Performance Analysis for In-Body & IoT Applications", desc: "A comprehensive simulation-based analysis of molecular communication systems using stochastic channel models with drift and diffusion dynamics, evaluating bit error rate and capacity across in-body and IoT scenarios.", tags: ["Molecular Communication", "Nanocommunications", "Simulation", "Channel Modeling", "Python"], status: "Published", when: "Apr 2026", pdf: molecularPdf },
+  { title: "Wireless Molecular Communication Systems: Performance Analysis for In-Body & IoT Applications", desc: "A comprehensive simulation-based analysis of molecular communication systems using stochastic channel models with drift and diffusion dynamics, evaluating bit error rate and capacity across in-body and IoT scenarios.", tags: ["Molecular Communication", "Nanocommunications", "Simulation", "Channel Modeling", "Python"], status: "Published", when: "Apr 2026" },
   { title: "EEG-Based Cognitive Load & Confusion Detection", desc: "A deep learning approach to detect cognitive load and confusion using EEG signals for adaptive learning and real-time feedback systems.", tags: ["EEG", "Signal Processing", "Deep Learning", "Python", "MNE"], status: "Active Research", when: "Jan 2025" },
   { title: "Multi-Agent AI System for Flood Prediction & Evacuation Planning", desc: "Developed a multi-agent framework using satellite & sensor data for flood forecasting, risk assessment and intelligent evacuation route optimization.", tags: ["Multi-Agent Systems", "Remote Sensing", "Python", "GeoSpatial AI", "Simulation"], status: "Completed", when: "Oct 2024" },
   { title: "Smart Energy Audit System with IoT & Analytics", desc: "IoT-based energy monitoring system using ESP32 and PZEM-004T with real-time analytics dashboard for efficient energy management.", tags: ["IoT", "ESP32", "PZEM-004T", "Cloud", "Data Analytics"], status: "Prototype Completed", when: "Aug 2024" },

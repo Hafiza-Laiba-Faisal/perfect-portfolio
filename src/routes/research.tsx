@@ -90,15 +90,6 @@ function ResearchPage() {
                       <span key={t} className="rounded-md bg-secondary px-2 py-0.5 text-[11px] font-medium text-foreground/75">{t}</span>
                     ))}
                   </div>
-                  {r.pdf && (
-                    <button
-                      type="button"
-                      onClick={() => { const a = document.createElement("a"); a.href = r.pdf; a.download = "Laiba_Dua_Fatima_Maha_cep.pdf"; a.click(); }}
-                      className="mt-2 inline-flex items-center gap-1.5 text-[11.5px] font-medium text-ember hover:underline cursor-pointer bg-transparent border-none p-0"
-                    >
-                      <Download className="h-3.5 w-3.5" /> Download Paper
-                    </button>
-                  )}
                 </div>
                 <div className="shrink-0 text-right">
                   <div className="text-[11px] font-semibold uppercase tracking-wider text-foreground/50">Status</div>
