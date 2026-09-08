@@ -12,6 +12,10 @@ import pNeuro from "@/assets/project-neuro.jpg";
 import pHeal from "@/assets/project-heal.jpg";
 import pHealth from "@/assets/project-health.jpg";
 import pCircuit from "@/assets/project-circuit.jpg";
+import pTenbitRag from "@/assets/project-flood.jpg";
+import pUaeVat from "@/assets/project-neuro.jpg";
+import pOcr from "@/assets/project-nexa.jpg";
+import pFacebookScraper from "@/assets/project-circuit.jpg";
 import logoPenovatech from "@/assets/logo-penovatech.svg";
 import logoTenbit from "@/assets/logo-tenbit.jpg";
 import logoNtdc from "@/assets/logo-ntdc.jpg";
@@ -34,6 +38,10 @@ import archHealthLinkRCOS from "@/assets/architectures/healthlink360/rcos.png";
 import archHealthLinkIAIB from "@/assets/architectures/healthlink360/iaib.png";
 import archHealthLinkOverview from "@/assets/architectures/healthlink360/overview.png";
 import archCircuitSathi from "@/assets/architectures/circuitsathi/overview.png";
+import archTenbitRagArch from "@/assets/architectures/production_systems/project-tenbit-rag-architecture.png";
+import archTenbitRagPipeline from "@/assets/architectures/production_systems/project-tenbit-rag-pipeline.png";
+import archFacebookScraper from "@/assets/architectures/production_systems/project-facebook-scraper-flow.png";
+import archOcrService from "@/assets/architectures/production_systems/project-ocr-architecture.png";
 
 import certPBCert from "@/assets/certificates/PB Hacks Winner (11).png";
 import certDSH from "@/assets/certificates/DSH Hacks V1.png";
@@ -46,11 +54,12 @@ import certAzure from "@/assets/certificates/Building AI Cloud Apps With Microso
 import certHuawei from "@/assets/certificates/Huawei Certification.jpg";
 import certGeneric from "@/assets/certificates/NTDC Internship 2025 Certificate - Hafiza Laiba Faisal.jpg";
 
-export const navItems: { label: string; to: string }[] = [
+export const navItems: { label: string; to: string; hash?: string }[] = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Experience", to: "/experience" },
   { label: "Projects", to: "/projects" },
+  { label: "Production Systems", to: "/projects", hash: "production-systems" },
   { label: "Skills", to: "/skills" },
   { label: "Achievements", to: "/achievements" },
   { label: "Research", to: "/research" },
@@ -73,7 +82,7 @@ export type Project = {
   title: string;
   desc: string;
   tags: string[];
-  category: "AI & Multi-Agent Systems" | "Embedded & IoT" | "Power Systems & IoT" | "Healthcare & EdTech" | "Aerospace & Embedded";
+  category: "AI & Multi-Agent Systems" | "Embedded & IoT" | "Power Systems & IoT" | "Healthcare & EdTech" | "Aerospace & Embedded" | "Production Systems";
   github?: string;
   details?: {
     role?: string;
@@ -565,6 +574,182 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    img: pTenbitRag, title: "TenBit RAG Platform",
+    category: "Production Systems",
+    desc: "Multi-tenant, production-grade Retrieval-Augmented Generation platform serving hybrid search (dense + sparse) with cross-encoder reranking, multi-LLM routing, and full tenant isolation across SQLite + Qdrant.",
+    tags: ["FastAPI", "Qdrant", "Redis", "Docker", "nginx", "Multi-LLM (Gemini/OpenAI/Claude/Mistral)", "SSE Streaming"],
+    details: {
+      role: "AI Software Engineer — Backend & RAG Systems, TenBit Solutions",
+      problemStatement: "Enterprise clients needed an isolated, self-hosted RAG system supporting multiple tenants with independent LLM providers, config, and data — without cross-tenant data leakage or a single point of failure.",
+      solutionOverview: "Built a multi-tenant RAG platform with hybrid retrieval (dense + sparse), cross-encoder reranking, per-tenant SQLite isolation, Redis-backed rate limiting, and multi-LLM routing with graceful degradation across all core services.",
+      features: [
+        "Hybrid Retrieval (Qdrant ANN + BM25 with RRF)",
+        "Cross-Encoder Reranking (BGE)",
+        "Per-Tenant SQLite Isolation (100% audit verified)",
+        "Redis Sliding-Window Rate Limiting",
+        "Graceful Degradation (Qdrant/Redis failure-safe)",
+        "Two-Layer Prompt Injection Detection",
+        "7 LLM Providers with Per-Tenant Config",
+        "SSE Streaming Responses",
+      ],
+      bullets: [
+        "Built hybrid retrieval (Qdrant ANN + BM25 with Reciprocal Rank Fusion, dense/sparse weighting 0.55/0.45) with BGE cross-encoder reranking.",
+        "Engineered per-tenant SQLite isolation, verified via a 100% isolation audit endpoint.",
+        "Implemented Redis-backed sliding-window rate limiting and ingestion-status persistence with full graceful degradation (system stays operational even if Qdrant/Redis go down).",
+        "Added two-layer prompt injection detection (regex + DeBERTa).",
+        "Integrated 7 LLM providers (Gemini, OpenAI, Anthropic, Mistral, NVIDIA NIM, OpenRouter, Ollama) with per-tenant configuration.",
+      ],
+      archImages: [archTenbitRagArch, archTenbitRagPipeline],
+      architectureDiagram: {
+        title: "TenBit RAG Multi-Tenant Architecture",
+        steps: [
+          { step: "01", label: "nginx Reverse Proxy", desc: "Routes requests to RAG API, OCR Service, and Scraper Service with TLS termination." },
+          { step: "02", label: "RAG API (FastAPI)", desc: "Handles hybrid retrieval, reranking, multi-LLM routing, and SSE streaming per tenant." },
+          { step: "03", label: "Qdrant + Redis", desc: "Qdrant stores dense/sparse vectors; Redis manages rate limits, sessions, and ingestion state." },
+          { step: "04", label: "Per-Tenant SQLite", desc: "Isolated tenant configuration, API keys, and metadata with verified zero cross-tenant leakage." },
+        ],
+      },
+      techStackCategories: [
+        { category: "Backend & API", items: ["Python 3.11", "FastAPI", "SSE Streaming", "JWT Auth", "Fernet Encryption"] },
+        { category: "Search & Vector DB", items: ["Qdrant (ANN + BM25)", "BGE Cross-Encoder Reranking", "Reciprocal Rank Fusion"] },
+        { category: "Infrastructure", items: ["Docker", "nginx", "Redis", "SQLite (per-tenant)", "Prometheus"] },
+        { category: "Multi-LLM Routing", items: ["Gemini", "OpenAI", "Anthropic", "Mistral", "NVIDIA NIM", "OpenRouter", "Ollama"] },
+      ],
+    },
+  },
+  {
+    img: pUaeVat, title: "UAE VAT Guide AI",
+    category: "Production Systems",
+    github: "https://github.com/Hafiza-Laiba-Faisal/uae-vat-guide-ai",
+    desc: "A legally-aware RAG assistant answering UAE VAT questions from 36 official FTA documents, with a 5-tier legal-hierarchy engine that prevents non-binding guidance from being presented as law.",
+    tags: ["TanStack Start", "Supabase", "pgvector", "Mistral Embed", "Firecrawl"],
+    details: {
+      role: "AI Full Stack Engineer",
+      problemStatement: "Tax/legal Q&A tools risk hallucinating citations or treating non-binding guidance as binding law — a serious liability in a regulated domain.",
+      solutionOverview: "Designed a 5-rank legal-hierarchy engine enforced at the prompt level, with Supabase vector matching, citation validation, confidence scoring, and bilingual responses from 36 official FTA documents.",
+      features: [
+        "5-Rank Legal Hierarchy Engine",
+        "Supabase RPC Vector Match (cosine + priority boost)",
+        "Citation-Validation Gate",
+        "Confidence Scoring (high/moderate/ambiguous/conflict)",
+        "Automatic Bilingual (Arabic/English) Responses",
+        "Dual-Mode (Concise vs Expert) via Regex Intent Detection",
+        "24 Automated Tests",
+        "Mistral Embed + Firecrawl Ingestion",
+      ],
+      bullets: [
+        "Designed a 5-rank legal hierarchy (Federal Decree-Law → Cabinet Decisions → FTA Clarifications → FTA Guides → third-party) enforced at the prompt level.",
+        "Built a Supabase RPC (match_fta_chunks) combining cosine similarity with a document-priority boost.",
+        "Implemented a citation-validation gate so the LLM can only cite retrieved chunks.",
+        "Added confidence scoring (high/moderate/ambiguous/conflict) and automatic bilingual (Arabic/English) responses.",
+        "Built dual-mode responses (concise <150 words vs expert mode with full citations) via regex intent detection.",
+      ],
+      archImages: [archTenbitRagArch],
+      architectureDiagram: {
+        title: "UAE VAT Guide AI — Legal-Hierarchy RAG Pipeline",
+        steps: [
+          { step: "01", label: "User Query & Intent Detection", desc: "Regex intent detection classifies concise vs expert mode and routes query to embedding pipeline." },
+          { step: "02", label: "Mistral Embedding", desc: "Query embedded via Mistral AI and matched against Supabase pgvector with priority boost." },
+          { step: "03", label: "Legal Hierarchy & Confidence Scoring", desc: "5-tier hierarchy filters non-binding sources; confidence scored as high/moderate/ambiguous/conflict." },
+          { step: "04", label: "Streaming Response", desc: "Mistral LLM streams bilingual (Arabic/English) response with citation validation gate." },
+        ],
+      },
+      techStackCategories: [
+        { category: "Frontend", items: ["TypeScript", "TanStack Start"] },
+        { category: "Database & Vectors", items: ["Supabase", "pgvector", "match_fta_chunks RPC"] },
+        { category: "AI & Embedding", items: ["Mistral AI", "Mistral Embed", "Firecrawl (ingestion)"] },
+        { category: "Testing", items: ["24 Automated Tests", "Citation Validation", "Legal Hierarchy Testing"] },
+      ],
+    },
+  },
+  {
+    img: pOcr, title: "OCR Service",
+    category: "Production Systems",
+    desc: "Pluggable OCR microservice using the Strategy Pattern — tries a cloud engine (Mistral OCR) first, falls back to a local ONNX-based PaddleOCR engine with zero downtime.",
+    tags: ["FastAPI", "PaddleOCR", "Mistral OCR API", "onnxruntime"],
+    details: {
+      role: "Backend Engineer",
+      problemStatement: "Needed reliable OCR across scanned PDFs, images, and Office files that doesn't go down when the cloud provider fails or rate-limits.",
+      solutionOverview: "Built a pluggable OCR microservice using the Strategy Pattern with an OCROrchestrator that tries cloud (Mistral OCR) first and falls back to local PaddleOCR with zero downtime, plus hybrid PDF processing and batch CLI.",
+      features: [
+        "Strategy Pattern OCROrchestrator",
+        "Cloud-First / Local Fallback",
+        "Hybrid PDF Pipeline (native text + OCR)",
+        "Entity Extraction (URLs/emails/phones)",
+        "Table Extraction to HTML",
+        "Batch CLI (PDFs/PPTX/XLSX)",
+        "Per-Request Rate Limiting",
+        "Structured JSON Logging with Request-ID Tracing",
+      ],
+      bullets: [
+        "Built an OCROrchestrator that iterates engines until one succeeds, with a shared BaseOCREngine interface.",
+        "Implemented a hybrid PDF pipeline that extracts native text directly and only OCRs pages detected as scanned (configurable char threshold).",
+        "Added entity extraction (URLs/emails/phones), table extraction to HTML, and a batch CLI processing PDFs/PPTX/XLSX in one pass.",
+        "Added per-request rate limiting, API-key auth, and structured JSON logging with request-ID tracing.",
+      ],
+      archImages: [archOcrService],
+      architectureDiagram: {
+        title: "OCR Microservice — Strategy Pattern Fallback Architecture",
+        steps: [
+          { step: "01", label: "Client → FastAPI", desc: "Receives document (PDF/image/Office), authenticates via API key, applies per-request rate limit." },
+          { step: "02", label: "Service Layer", desc: "Hybrid PDF pipeline: extracts native text for text pages, routes scanned pages to OCR orchestrator." },
+          { step: "03", label: "OCROrchestrator", desc: "Strategy Pattern: tries Mistral OCR (cloud) first, falls back to PaddleOCR (local ONNX) on failure." },
+          { step: "04", label: "Structured OCRResult", desc: "Returns structured JSON with text, entities (URLs/emails/phones), tables (HTML), and metadata." },
+        ],
+      },
+      techStackCategories: [
+        { category: "Backend", items: ["Python", "FastAPI", "Pydantic"] },
+        { category: "OCR Engines", items: ["PaddleOCR (onnxruntime)", "Mistral OCR API", "Strategy Pattern"] },
+        { category: "Document Processing", items: ["PyMuPDF", "Entity Extraction", "Table → HTML", "Batch CLI"] },
+      ],
+    },
+  },
+  {
+    img: pFacebookScraper, title: "Facebook Post Scraper",
+    category: "Production Systems",
+    github: "https://github.com/Hafiza-Laiba-Faisal/facebook-post-scraper",
+    desc: "A production scraping platform with a React frontend and FastAPI backend that extracts posts, reels, and profile data from Facebook, with persistent session cookies and background job processing.",
+    tags: ["FastAPI", "Selenium 4", "React 19", "TanStack Router", "SQLite"],
+    details: {
+      role: "Backend Engineer",
+      problemStatement: "Needed a reusable, resilient scraping backend that handles JS-rendered pages, Facebook's DOM structure, and long-running scrapes without hitting HTTP timeouts.",
+      solutionOverview: "Built a background job system so 2–10 minute Selenium scrapes never block the HTTP request, with persistent cookie-based login, DASH video manifest parsing, and date-range early-stop logic.",
+      features: [
+        "Background Job System (non-blocking scrapes)",
+        "3-Strategy JSON Extraction + Selenium DOM Fallback",
+        "DASH Manifest Parsing (video + audio merge)",
+        "Persistent Cookie-Based Login (3 methods)",
+        "Date-Range Early-Stop Logic",
+        "CSV / JSON / Bulk-ZIP Export",
+        "CORS Media Proxy (Facebook CDN)",
+        "Frontend Job Status Polling (2.5s interval)",
+      ],
+      bullets: [
+        "Built a background job system so 2–10 minute Selenium scrapes never block the HTTP request — frontend polls job status every 2.5s.",
+        "Implemented a Facebook post/reel scraper with 3-strategy JSON extraction + Selenium DOM fallback, and DASH manifest parsing to merge video + audio streams for reels.",
+        "Designed persistent cookie-based login (3 methods: browser window, console-paste, Chrome profile import) that survives server restarts.",
+        "Built date-range early-stop logic — scraper stops scrolling once 3+ consecutive posts are older than the requested range.",
+        "Added CSV/JSON/bulk-ZIP export and a CORS media proxy to stream Facebook CDN content.",
+      ],
+      archImages: [archFacebookScraper],
+      architectureDiagram: {
+        title: "Facebook Scraper — Background Job Architecture",
+        steps: [
+          { step: "01", label: "React 19 Frontend", desc: "TanStack Router SPA submits scrape requests, polls job_id for status updates every 2.5s." },
+          { step: "02", label: "FastAPI Backend", desc: "Dispatches scrape to background thread, returns job_id immediately — no HTTP timeouts." },
+          { step: "03", label: "Background Thread (Selenium)", desc: "3-strategy JSON extraction + DOM fallback, DASH manifest parsing for video/audio merge." },
+          { step: "04", label: "SQLite Storage", desc: "Persists posts, reels, profile data, and session cookies. Exports CSV/JSON/bulk-ZIP." },
+        ],
+      },
+      techStackCategories: [
+        { category: "Frontend", items: ["React 19", "TanStack Router", "shadcn/ui"] },
+        { category: "Backend", items: ["Python", "FastAPI", "Background Threads"] },
+        { category: "Scraping", items: ["Selenium 4", "DASH Manifest Parsing", "3-Strategy JSON Extraction"] },
+        { category: "Storage & Export", items: ["SQLite", "CSV/JSON/Bulk-ZIP Export", "CORS Media Proxy"] },
+      ],
+    },
+  },
 ];
 
 export interface ExperienceItem {
@@ -822,6 +1007,7 @@ export function SiteHeader({ active }: { active?: string }) {
               <li key={n.label} className="relative">
                 <Link
                   to={n.to}
+                  hash={n.hash}
                   className={`text-[14px] font-medium transition-colors ${isActive ? "text-primary" : "text-foreground/70 hover:text-primary"}`}
                 >
                   {n.label}

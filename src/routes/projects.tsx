@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight, ArrowUpRight, Github, Star, Trophy, Cpu, Battery, Radio, Box, Target, Rocket,
   FileText, Lightbulb, Network, Layers, CheckCircle2, ShieldCheck, ExternalLink, Code2, Server,
-  Sparkles
+  Sparkles, ChevronLeft, ChevronRight, ZoomIn, X
 } from "lucide-react";
 import { projects, Project, SiteHeader, SiteFooter, PageHeader, Card } from "@/lib/portfolio-data";
 
@@ -29,389 +30,494 @@ const categories = [
 ] as const;
 
 const specIcon = { chip: Cpu, battery: Battery, sensor: Target, structure: Box, comm: Radio, mission: Rocket } as const;
+const PANELS = [
+  { id: "problem", label: "Problem & Role", icon: FileText },
+  { id: "solution", label: "Solution & Features", icon: Lightbulb },
+  { id: "architecture", label: "Architecture", icon: Network },
+  { id: "techstack", label: "Tech Stack", icon: Code2 },
+] as const;
 
-function ProjectCard({ project }: { project: Project }) {
-  const [activeTab, setActiveTab] = useState<"overview" | "solution" | "architecture" | "techstack">("overview");
-
+/* ─── Project Header ─── */
+function ProjectHeader({ project }: { project: Project }) {
   return (
-    <Card className="!p-6 md:!p-8 transition-all hover:border-[#1E3A34]/40 shadow-xs bg-white">
-      <div className="flex flex-col gap-6">
-        {/* Header Bar with Image, Title, & 4 Detail Tabs */}
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex flex-col sm:flex-row gap-5 flex-1">
-            <div className="relative h-44 sm:h-36 sm:w-52 shrink-0 overflow-hidden rounded-2xl bg-muted border border-border/60">
-              <img src={project.img} alt={project.title} className="h-full w-full object-cover" />
-              {project.featured && (
-                <span className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-md bg-[#1E3A34] px-2.5 py-1 text-[10.5px] font-bold text-white shadow-2xs uppercase tracking-wider">
-                  <Star className="h-3 w-3 text-[#D97706]" fill="currentColor" /> Featured
-                </span>
-              )}
-            </div>
-
-            <div className="flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-[#FAF7F2] border border-border/70 px-3 py-0.5 text-xs font-semibold text-[#D97706]">
-                  {project.category}
-                </span>
-                {project.details?.role && (
-                  <span className="text-xs font-medium text-foreground/60">
-                    · {project.details.role}
-                  </span>
-                )}
-              </div>
-
-              <h2 className="mt-2 font-display text-2xl font-extrabold text-[#1C2E2A] md:text-3xl leading-snug">
-                {project.title}
-              </h2>
-              
-              <p className="mt-2 text-[13.5px] leading-relaxed text-foreground/75">
-                {project.desc}
-              </p>
-
-              {/* Tag Pills */}
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {project.tags.map((t) => (
-                  <span key={t} className="rounded-md bg-[#FAF7F2] border border-border/50 px-2.5 py-0.5 text-[11px] font-semibold text-foreground/80">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* GitHub / External Links */}
-          {project.github && (
-            <div className="shrink-0 flex items-center gap-2">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-[#FAF7F2] px-4 py-2 text-xs font-bold text-[#1E3A34] hover:bg-[#1E3A34] hover:text-white transition-all shadow-2xs"
-              >
-                <Github className="h-4 w-4" /> View Code
-              </a>
-            </div>
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between p-5 md:p-6 pb-4">
+      <div className="flex flex-col sm:flex-row gap-4 flex-1">
+        <div className="relative h-36 sm:h-28 sm:w-44 shrink-0 overflow-hidden rounded-2xl bg-muted border border-border/60">
+          <img src={project.img} alt={project.title} className="h-full w-full object-cover" />
+          {project.featured && (
+            <span className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-md bg-[#1E3A34] px-2.5 py-1 text-[10.5px] font-bold text-white shadow-2xs uppercase tracking-wider">
+              <Star className="h-3 w-3 text-[#D97706]" fill="currentColor" /> Featured
+            </span>
           )}
         </div>
 
-        {/* 4 Detail Tabs Navigation Header */}
-        <div className="border-t border-border/60 pt-4">
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl bg-[#FAF7F2] p-1.5 border border-border/60">
-            <button
-              onClick={() => setActiveTab("overview")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
-                activeTab === "overview"
-                  ? "bg-[#1E3A34] text-white shadow-xs"
-                  : "text-foreground/75 hover:bg-white hover:text-foreground"
-              }`}
-            >
-              <FileText className="h-3.5 w-3.5 text-[#D97706]" /> 1. Problem &amp; Overview
-            </button>
+        <div className="flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-[#FAF7F2] border border-border/70 px-3 py-0.5 text-xs font-semibold text-[#D97706]">
+              {project.category}
+            </span>
+            {project.details?.role && (
+              <span className="text-xs font-medium text-foreground/60">
+                · {project.details.role}
+              </span>
+            )}
+          </div>
 
-            <button
-              onClick={() => setActiveTab("solution")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
-                activeTab === "solution"
-                  ? "bg-[#1E3A34] text-white shadow-xs"
-                  : "text-foreground/75 hover:bg-white hover:text-foreground"
-              }`}
-            >
-              <Lightbulb className="h-3.5 w-3.5 text-[#D97706]" /> 2. Solution &amp; Key Features
-            </button>
+          <h2 className="mt-2 font-display text-xl md:text-2xl font-extrabold text-[#1C2E2A] leading-snug">
+            {project.title}
+          </h2>
 
-            <button
-              onClick={() => setActiveTab("architecture")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
-                activeTab === "architecture"
-                  ? "bg-[#1E3A34] text-white shadow-xs"
-                  : "text-foreground/75 hover:bg-white hover:text-foreground"
-              }`}
-            >
-              <Network className="h-3.5 w-3.5 text-[#D97706]" /> 3. Architecture Diagram
-            </button>
+          <p className="mt-1.5 text-[13px] leading-relaxed text-foreground/75 line-clamp-2">
+            {project.desc}
+          </p>
 
-            <button
-              onClick={() => setActiveTab("techstack")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
-                activeTab === "techstack"
-                  ? "bg-[#1E3A34] text-white shadow-xs"
-                  : "text-foreground/75 hover:bg-white hover:text-foreground"
-              }`}
-            >
-              <Code2 className="h-3.5 w-3.5 text-[#D97706]" /> 4. Tech Stack &amp; Implementation
-            </button>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {project.tags.map((t) => (
+              <span key={t} className="rounded-md bg-[#FAF7F2] border border-border/50 px-2.5 py-0.5 text-[11px] font-semibold text-foreground/80">
+                {t}
+              </span>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* TAB 1: PROBLEM STATEMENT & OVERVIEW */}
-        {activeTab === "overview" && (
-          <div className="grid gap-6 rounded-2xl bg-[#FAF7F2]/80 p-5 border border-border/50 md:grid-cols-2">
-            <div>
-              <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
-                <FileText className="h-4 w-4 text-[#D97706]" /> Problem Statement
-              </h4>
-              <p className="mt-2 text-[13.5px] leading-relaxed text-foreground/80 font-normal">
-                {project.details?.problemStatement ?? project.desc}
-              </p>
+      {project.github && (
+        <div className="shrink-0 flex items-center gap-2">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-[#FAF7F2] px-4 py-2 text-xs font-bold text-[#1E3A34] hover:bg-[#1E3A34] hover:text-white transition-all shadow-2xs"
+          >
+            <Github className="h-4 w-4" /> View Code
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
 
-              {project.details?.achievement && (
-                <div className="mt-4 rounded-xl bg-white p-3.5 border border-[#D97706]/30 shadow-2xs">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#D97706]">
-                    <Trophy className="h-4 w-4" /> Award &amp; Recognition
-                  </div>
-                  <p className="mt-1 font-display text-base font-bold text-[#1C2E2A]">{project.details.achievement.label}</p>
-                  <p className="text-xs text-foreground/70">{project.details.achievement.by}</p>
-                </div>
-              )}
+/* ─── Section 1: Problem & Overview ─── */
+function SectionProblem({ project }: { project: Project }) {
+  return (
+    <div className="grid gap-5 md:grid-cols-2 h-full">
+      <div>
+        <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
+          <FileText className="h-4 w-4 text-[#D97706]" /> Problem Statement
+        </h4>
+        <p className="mt-2 text-[13px] leading-relaxed text-foreground/80">
+          {project.details?.problemStatement ?? project.desc}
+        </p>
+
+        {project.details?.achievement && (
+          <div className="mt-4 rounded-xl bg-white p-3.5 border border-[#D97706]/30 shadow-2xs">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#D97706]">
+              <Trophy className="h-4 w-4" /> Award &amp; Recognition
             </div>
-
-            <div>
-              <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
-                <Target className="h-4 w-4 text-[#D97706]" /> Key Contributions &amp; Role
-              </h4>
-              {project.details?.bullets ? (
-                <ul className="mt-2 space-y-2 text-[13px] leading-relaxed text-foreground/80">
-                  {project.details.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2.5">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1E3A34]" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="mt-2 text-[13.5px] text-foreground/80">{project.desc}</p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 2: SOLUTION & KEY FEATURES */}
-        {activeTab === "solution" && (
-          <div className="grid gap-6 rounded-2xl bg-[#FAF7F2]/80 p-5 border border-border/50 md:grid-cols-2">
-            <div>
-              <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
-                <Lightbulb className="h-4 w-4 text-[#D97706]" /> Solution Overview
-              </h4>
-              <p className="mt-2 text-[13.5px] leading-relaxed text-foreground/80">
-                {project.details?.solutionOverview ?? project.desc}
-              </p>
-
-              {project.details?.features && (
-                <div className="mt-4">
-                  <h5 className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-2">Capabilities &amp; Features</h5>
-                  <div className="grid grid-cols-2 gap-2">
-                    {project.details.features.map((f) => (
-                      <div key={f} className="flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-xs font-semibold text-[#1C2E2A] border border-border/50 shadow-2xs">
-                        <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-[#1E3A34]" />
-                        <span className="truncate">{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div>
-              <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
-                <Layers className="h-4 w-4 text-[#D97706]" /> Key Specifications
-              </h4>
-              {project.details?.specs ? (
-                <div className="mt-3 space-y-2.5">
-                  {project.details.specs.map((s) => {
-                    const IconComp = specIcon[s.icon] || Cpu;
-                    return (
-                      <div key={s.label} className="flex items-center gap-3 rounded-xl bg-white p-3 border border-border/50 shadow-2xs">
-                        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#FAF7F2] text-[#D97706]">
-                          <IconComp className="h-4 w-4" />
-                        </span>
-                        <div>
-                          <div className="text-xs font-bold text-[#1C2E2A]">{s.label}</div>
-                          <div className="text-[12px] font-medium text-foreground/70">{s.value}</div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <p className="mt-2 text-xs text-foreground/70">Full hardware and software engineering specifications available in code repository.</p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 3: SYSTEM ARCHITECTURE DIAGRAM */}
-        {activeTab === "architecture" && (
-          <div className="rounded-2xl bg-[#FAF7F2]/80 p-5 border border-border/50 space-y-6">
-            <div className="flex items-center justify-between mb-2">
-              <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
-                <Network className="h-4 w-4 text-[#D97706]" />
-                {project.details?.architectureDiagram?.title ?? "System Architecture & Design"}
-              </h4>
-            </div>
-
-            {/* Visual Architecture Flowchart Box for NIGHEBAN */}
-            {project.title.includes("NIGHEBAN") && !project.details?.archImages && (
-              <div className="rounded-2xl border border-emerald-900/20 bg-emerald-950/5 p-5 dark:bg-emerald-950/20 shadow-2xs space-y-6">
-                
-                {/* Top Central Hub: Nigheban Cortex */}
-                <div className="text-center rounded-xl border border-emerald-800/30 bg-emerald-900/10 p-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-800 text-white font-mono text-xs font-bold uppercase tracking-wider mb-2">
-                    🧠 Nigheban Cortex Core (Central Orchestration Brain)
-                  </div>
-                  <p className="text-xs text-foreground/80 font-medium max-w-2xl mx-auto">
-                    FastAPI Async Orchestrator • Custom MCP Server • LangChain / LlamaIndex • Gemini Moderation Guardrails • MongoDB &amp; gRPC
-                  </p>
-                </div>
-
-                {/* 4 Agent Swarms Grid */}
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  <div className="rounded-xl border border-blue-900/20 bg-blue-950/5 p-3.5 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-blue-900 dark:text-blue-300">
-                      <span>🛰️ 1. Hydro-Met Agent</span>
-                    </div>
-                    <div className="text-[11px] font-semibold text-foreground/90">Detection &amp; Forecasting</div>
-                    <p className="text-[11px] text-foreground/75 leading-relaxed">
-                      LSTM/GRU Time-Series &amp; CNN Flood Risk Classification from Sentinel-2 &amp; Google Earth Engine.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-amber-900/20 bg-amber-950/5 p-3.5 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-amber-900 dark:text-amber-300">
-                      <span>🗺️ 2. Evacuation Agent</span>
-                    </div>
-                    <div className="text-[11px] font-semibold text-foreground/90">Relocation &amp; Transport</div>
-                    <p className="text-[11px] text-foreground/75 leading-relaxed">
-                      PostGIS / OSRM dry-land route optimization, shelter assignment &amp; automated meeting notices.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-emerald-900/20 bg-emerald-950/5 p-3.5 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-900 dark:text-emerald-300">
-                      <span>⛺ 3. Relief Agent</span>
-                    </div>
-                    <div className="text-[11px] font-semibold text-foreground/90">Camp &amp; Inventory Management</div>
-                    <p className="text-[11px] text-foreground/75 leading-relaxed">
-                      Prophet ML evacuee demand forecasting for food, tents &amp; medical aid with Kafka live updates.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-purple-900/20 bg-purple-950/5 p-3.5 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-purple-900 dark:text-purple-300">
-                      <span>🏠 4. Reconstruction Agent</span>
-                    </div>
-                    <div className="text-[11px] font-semibold text-foreground/90">Resettlement &amp; Return</div>
-                    <p className="text-[11px] text-foreground/75 leading-relaxed">
-                      OpenCV &amp; GDAL/Rasterio CNN damage assessment on drone/satellite imagery for safe return.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Bottom Stakeholder Multi-Tier Flow */}
-                <div className="rounded-xl border border-border/60 bg-white/80 p-4">
-                  <div className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-2 text-center">
-                    Multi-Level Stakeholder Coordination Pipeline
-                  </div>
-                  <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-foreground/80">
-                    <span className="rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 px-2.5 py-1">Federal (NDMA / PM Office)</span>
-                    <span>➔</span>
-                    <span className="rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-900 dark:text-blue-300 px-2.5 py-1">Provincial (PDMA / Health)</span>
-                    <span>➔</span>
-                    <span className="rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 px-2.5 py-1">District (DC / DDMU)</span>
-                    <span>➔</span>
-                    <span className="rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-900 dark:text-purple-300 px-2.5 py-1">Union Council (Rescue 1122)</span>
-                    <span>➔</span>
-                    <span className="rounded-lg bg-secondary border border-border/60 px-2.5 py-1">Community &amp; Welfare NGOs</span>
-                  </div>
-                </div>
-
-              </div>
-            )}
-
-            {/* Architecture Images Carousel */}
-            {project.details?.archImages && project.details.archImages.length > 0 ? (
-              <ArchImagesCarousel images={project.details.archImages} />
-            ) : project.details?.architectureDiagram?.steps ? (
-              /* Interactive Step-by-Step Architecture Pipeline */
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {(project.details?.architectureDiagram?.steps ?? [
-                  { step: "01", label: "Data Input & Ingestion", desc: "Ingests raw sensors, audio, images, or text queries." },
-                  { step: "02", label: "Core Processing Engine", desc: "Executes ML models, MNA physics solver, or custom MCP servers." },
-                  { step: "03", label: "AI Swarm & Logic", desc: "Multi-agent tool calling, validation, & cross-agent context handoff." },
-                  { step: "04", label: "Real-time Dashboard UI", desc: "Displays live telemetry, 3D trajectories, & human-in-the-loop actions." },
-                ]).map((st, idx) => (
-                  <div key={st.step} className="relative flex flex-col justify-between rounded-xl bg-white p-4 border border-border/60 shadow-2xs">
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#1E3A34] font-mono text-xs font-bold text-white">
-                          {st.step}
-                        </span>
-                        {idx < 3 && (
-                          <ArrowRight className="hidden lg:block h-4 w-4 text-[#D97706]" />
-                        )}
-                      </div>
-                      <h5 className="font-display text-xs font-bold text-[#1C2E2A] mb-1">{st.label}</h5>
-                      <p className="text-[11.5px] leading-relaxed text-foreground/75">{st.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : null}
-          </div>
-        )}
-
-        {/* TAB 4: TECH STACK & IMPLEMENTATION */}
-        {activeTab === "techstack" && (
-          <div className="rounded-2xl bg-[#FAF7F2]/80 p-5 border border-border/50">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
-                <Code2 className="h-4 w-4 text-[#D97706]" /> Tech Stack Breakdown &amp; Tooling
-              </h4>
-            </div>
-
-            {project.details?.techStackCategories ? (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {project.details.techStackCategories.map((tsc) => (
-                  <div key={tsc.category} className="rounded-xl bg-white p-4 border border-border/60 shadow-2xs">
-                    <h5 className="font-display text-xs font-bold text-[#1E3A34] uppercase tracking-wider mb-2.5">
-                      {tsc.category}
-                    </h5>
-                    <div className="flex flex-wrap gap-1.5">
-                      {tsc.items.map((it) => (
-                        <span key={it} className="rounded-md bg-[#FAF7F2] border border-border/60 px-2 py-1 text-[11px] font-semibold text-foreground/80">
-                          {it}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((t) => (
-                  <span key={t} className="rounded-lg bg-white border border-border/60 px-3 py-1.5 text-xs font-semibold text-[#1C2E2A] shadow-2xs">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {project.github && (
-              <div className="mt-5 flex items-center justify-between border-t border-border/50 pt-4">
-                <span className="text-xs font-medium text-foreground/70">Source code available on GitHub:</span>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E3A34] hover:underline"
-                >
-                  <Github className="h-4 w-4" /> Open Repository <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            )}
+            <p className="mt-1 font-display text-base font-bold text-[#1C2E2A]">{project.details.achievement.label}</p>
+            <p className="text-xs text-foreground/70">{project.details.achievement.by}</p>
           </div>
         )}
       </div>
-    </Card>
+
+      <div>
+        <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
+          <Target className="h-4 w-4 text-[#D97706]" /> Key Contributions &amp; Role
+        </h4>
+        {project.details?.bullets ? (
+          <ul className="mt-2 space-y-2 text-[13px] leading-relaxed text-foreground/80">
+            {project.details.bullets.map((b) => (
+              <li key={b} className="flex items-start gap-2.5">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1E3A34]" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-2 text-[13px] text-foreground/80">{project.desc}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Section 2: Solution & Key Features ─── */
+function SectionSolution({ project }: { project: Project }) {
+  return (
+    <div className="grid gap-5 md:grid-cols-2 h-full">
+      <div>
+        <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
+          <Lightbulb className="h-4 w-4 text-[#D97706]" /> Solution Overview
+        </h4>
+        <p className="mt-2 text-[13px] leading-relaxed text-foreground/80">
+          {project.details?.solutionOverview ?? project.desc}
+        </p>
+
+        {project.details?.features && (
+          <div className="mt-4">
+            <h5 className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-2">Capabilities &amp; Features</h5>
+            <div className="grid grid-cols-2 gap-2">
+              {project.details.features.map((f) => (
+                <div key={f} className="flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-xs font-semibold text-[#1C2E2A] border border-border/50 shadow-2xs">
+                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-[#1E3A34]" />
+                  <span className="truncate">{f}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div>
+        <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
+          <Layers className="h-4 w-4 text-[#D97706]" /> Key Specifications
+        </h4>
+        {project.details?.specs ? (
+          <div className="mt-3 space-y-2.5">
+            {project.details.specs.map((s) => {
+              const IconComp = specIcon[s.icon] || Cpu;
+              return (
+                <div key={s.label} className="flex items-center gap-3 rounded-xl bg-white p-3 border border-border/50 shadow-2xs">
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#FAF7F2] text-[#D97706]">
+                    <IconComp className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <div className="text-xs font-bold text-[#1C2E2A]">{s.label}</div>
+                    <div className="text-[12px] font-medium text-foreground/70">{s.value}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="mt-2 text-xs text-foreground/70">Full hardware and software engineering specifications available in code repository.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Section 3: Architecture Diagram ─── */
+function SectionArchitecture({ project }: { project: Project }) {
+  const [activeImgIdx, setActiveImgIdx] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const images = project.details?.archImages ?? [];
+  const steps = project.details?.architectureDiagram?.steps ?? [
+    { step: "01", label: "Data Input & Ingestion", desc: "Ingests raw sensors, audio, images, or text queries." },
+    { step: "02", label: "Core Processing Engine", desc: "Executes ML models, MNA physics solver, or custom MCP servers." },
+    { step: "03", label: "AI Swarm & Logic", desc: "Multi-agent tool calling, validation, & cross-agent context handoff." },
+    { step: "04", label: "Real-time Dashboard UI", desc: "Displays live telemetry, 3D trajectories, & human-in-the-loop actions." },
+  ];
+
+  return (
+    <div className="space-y-5 h-full overflow-y-auto pr-1">
+      <div className="flex items-center justify-between">
+        <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
+          <Network className="h-4 w-4 text-[#D97706]" />
+          {project.details?.architectureDiagram?.title ?? "System Architecture & Technical Design"}
+        </h4>
+
+        {images.length > 1 && (
+          <span className="text-xs font-semibold text-foreground/60">
+            Diagram {activeImgIdx + 1} of {images.length}
+          </span>
+        )}
+      </div>
+
+      {/* Architecture Diagrams Image Showcase */}
+      {images.length > 0 && (
+        <div className="space-y-3">
+          {images.length > 1 && (
+            <div className="flex flex-wrap items-center gap-2 pb-1">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImgIdx(idx)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    activeImgIdx === idx
+                      ? "bg-[#1E3A34] text-white shadow-xs"
+                      : "bg-white text-foreground/75 hover:bg-white/80 border border-border/60"
+                  }`}
+                >
+                  Architecture Diagram {idx + 1}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div className="relative group rounded-2xl overflow-hidden border border-border/70 shadow-sm max-h-[420px] flex items-center justify-center p-3 bg-[#FAF7F2]">
+            <img
+              src={images[activeImgIdx]}
+              alt={`${project.title} Architecture Diagram ${activeImgIdx + 1}`}
+              className="max-h-[380px] w-auto object-contain rounded-xl transition-transform duration-300 group-hover:scale-[1.01]"
+            />
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+              <button
+                onClick={() => setIsZoomed(true)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/95 text-[#1C2E2A] text-xs font-bold shadow-lg hover:bg-white transition-all transform hover:scale-105"
+              >
+                <ZoomIn className="h-4 w-4 text-[#D97706]" /> View High-Res Diagram
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Visual Architecture Flowchart Box for NIGHEBAN */}
+      {project.title.includes("NIGHEBAN") && (
+        <div className="rounded-2xl border border-emerald-900/20 bg-emerald-950/5 p-5 dark:bg-emerald-950/20 shadow-2xs space-y-6">
+          <div className="text-center rounded-xl border border-emerald-800/30 bg-emerald-900/10 p-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-800 text-white font-mono text-xs font-bold uppercase tracking-wider mb-2">
+              🧠 Nigheban Cortex Core (Central Orchestration Brain)
+            </div>
+            <p className="text-xs text-foreground/80 font-medium max-w-2xl mx-auto">
+              FastAPI Async Orchestrator • Custom MCP Server • LangChain / LlamaIndex • Gemini Moderation Guardrails • MongoDB &amp; gRPC
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-xl border border-blue-900/20 bg-blue-950/5 p-3.5 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-blue-900 dark:text-blue-300">
+                <span>🛰️ 1. Hydro-Met Agent</span>
+              </div>
+              <div className="text-[11px] font-semibold text-foreground/90">Detection &amp; Forecasting</div>
+              <p className="text-[11px] text-foreground/75 leading-relaxed">
+                LSTM/GRU Time-Series &amp; CNN Flood Risk Classification from Sentinel-2 &amp; Google Earth Engine.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-amber-900/20 bg-amber-950/5 p-3.5 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-amber-900 dark:text-amber-300">
+                <span>🗺️ 2. Evacuation Agent</span>
+              </div>
+              <div className="text-[11px] font-semibold text-foreground/90">Relocation &amp; Transport</div>
+              <p className="text-[11px] text-foreground/75 leading-relaxed">
+                PostGIS / OSRM dry-land route optimization, shelter assignment &amp; automated meeting notices.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-emerald-900/20 bg-emerald-950/5 p-3.5 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-emerald-900 dark:text-emerald-300">
+                <span>⛺ 3. Relief Agent</span>
+              </div>
+              <div className="text-[11px] font-semibold text-foreground/90">Camp &amp; Inventory Management</div>
+              <p className="text-[11px] text-foreground/75 leading-relaxed">
+                Prophet ML evacuee demand forecasting for food, tents &amp; medical aid with Kafka live updates.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-purple-900/20 bg-purple-950/5 p-3.5 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-purple-900 dark:text-purple-300">
+                <span>🏠 4. Reconstruction Agent</span>
+              </div>
+              <div className="text-[11px] font-semibold text-foreground/90">Resettlement &amp; Return</div>
+              <p className="text-[11px] text-foreground/75 leading-relaxed">
+                OpenCV &amp; GDAL/Rasterio CNN damage assessment on drone/satellite imagery for safe return.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border/60 bg-white/80 p-4">
+            <div className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-2 text-center">
+              Multi-Level Stakeholder Coordination Pipeline
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-foreground/80">
+              <span className="rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 px-2.5 py-1">Federal (NDMA / PM Office)</span>
+              <span>➔</span>
+              <span className="rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-900 dark:text-blue-300 px-2.5 py-1">Provincial (PDMA / Health)</span>
+              <span>➔</span>
+              <span className="rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 px-2.5 py-1">District (DC / DDMU)</span>
+              <span>➔</span>
+              <span className="rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-900 dark:text-purple-300 px-2.5 py-1">Union Council (Rescue 1122)</span>
+              <span>➔</span>
+              <span className="rounded-lg bg-secondary border border-border/60 px-2.5 py-1">Community &amp; Welfare NGOs</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Step-by-Step System Flow */}
+      {steps && steps.length > 0 && (
+        <div>
+          <h5 className="text-xs font-bold uppercase tracking-wider text-foreground/70 mb-2.5">
+            System Workflow &amp; Pipeline Stages
+          </h5>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((st, idx) => (
+              <div key={st.step} className="relative flex flex-col justify-between rounded-xl bg-white p-4 border border-border/60 shadow-2xs">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#1E3A34] font-mono text-xs font-bold text-white">
+                      {st.step}
+                    </span>
+                    {idx < steps.length - 1 && (
+                      <ArrowRight className="hidden lg:block h-4 w-4 text-[#D97706]" />
+                    )}
+                  </div>
+                  <h5 className="font-display text-xs font-bold text-[#1C2E2A] mb-1">{st.label}</h5>
+                  <p className="text-[11.5px] leading-relaxed text-foreground/75">{st.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox / Zoom Modal */}
+      {isZoomed && images.length > 0 && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+          onClick={() => setIsZoomed(false)}
+        >
+          <div
+            className="relative max-w-5xl max-h-[90vh] w-full bg-white dark:bg-slate-900 rounded-2xl p-4 overflow-auto shadow-2xl flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-full flex items-center justify-between pb-3 border-b border-border/60 mb-3">
+              <h3 className="font-display text-sm font-bold text-[#1C2E2A] dark:text-white">
+                {project.title} — Architecture Diagram {images.length > 1 ? `(${activeImgIdx + 1}/${images.length})` : ""}
+              </h3>
+              <button
+                onClick={() => setIsZoomed(false)}
+                className="p-1.5 rounded-lg bg-muted text-foreground/70 hover:bg-muted/80 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <img
+              src={images[activeImgIdx]}
+              alt={`${project.title} Architecture Full Resolution`}
+              className="max-h-[75vh] w-auto object-contain rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─── Section 4: Tech Stack & Implementation ─── */
+function SectionTechStack({ project }: { project: Project }) {
+  return (
+    <div className="space-y-4 h-full">
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-[#1C2E2A]">
+          <Code2 className="h-4 w-4 text-[#D97706]" /> Tech Stack Breakdown &amp; Tooling
+        </h4>
+      </div>
+
+      {project.details?.techStackCategories ? (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {project.details.techStackCategories.map((tsc) => (
+            <div key={tsc.category} className="rounded-xl bg-white p-4 border border-border/60 shadow-2xs">
+              <h5 className="font-display text-xs font-bold text-[#1E3A34] uppercase tracking-wider mb-2.5">
+                {tsc.category}
+              </h5>
+              <div className="flex flex-wrap gap-1.5">
+                {tsc.items.map((it) => (
+                  <span key={it} className="rounded-md bg-[#FAF7F2] border border-border/60 px-2 py-1 text-[11px] font-semibold text-foreground/80">
+                    {it}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((t) => (
+            <span key={t} className="rounded-lg bg-white border border-border/60 px-3 py-1.5 text-xs font-semibold text-[#1C2E2A] shadow-2xs">
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {project.github && (
+        <div className="mt-5 flex items-center justify-between border-t border-border/50 pt-4">
+          <span className="text-xs font-medium text-foreground/70">Source code available on GitHub:</span>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E3A34] hover:underline"
+          >
+            <Github className="h-4 w-4" /> Open Repository <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const PANEL_CONTENT = [SectionProblem, SectionSolution, SectionArchitecture, SectionTechStack] as const;
+/* ─── Main ProjectCard — Premium Tabbed Interface ─── */
+function ProjectCard({ project, index }: { project: Project; index?: number }) {
+  const [activePanel, setActivePanel] = useState(0);
+
+  const PanelComp = PANEL_CONTENT[activePanel];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: Math.min((index ?? 0) * 0.1, 0.3) }}
+      className="mb-12 w-full"
+    >
+      <div className="rounded-3xl border border-border/80 bg-white/95 backdrop-blur-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+        
+        {/* Project Header */}
+        <ProjectHeader project={project} />
+
+        {/* Panel Selection Tabs */}
+        <div className="flex items-center justify-between gap-2 px-5 md:px-7 py-3 bg-[#FAF7F2] border-t border-b border-border/60">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-none w-full">
+            {PANELS.map((panel, i) => {
+              const PIcon = panel.icon;
+              const isActive = activePanel === i;
+              return (
+                <button
+                  key={panel.id}
+                  onClick={() => setActivePanel(i)}
+                  className={`relative inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-bold transition-all duration-200 shrink-0 ${
+                    isActive
+                      ? "bg-[#1E3A34] text-white shadow-md"
+                      : "bg-white text-foreground/75 hover:bg-white/90 hover:text-foreground border border-border/60"
+                  }`}
+                >
+                  <PIcon className={`h-4 w-4 ${isActive ? "text-[#D97706]" : "text-foreground/50"}`} />
+                  <span>{panel.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId={`active-tab-indicator-${project.title}`}
+                      className="absolute -bottom-1 left-4 right-4 h-0.5 bg-[#D97706] rounded-full"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Panel Content Area */}
+        <div className="p-5 md:p-8 bg-gradient-to-b from-[#FAF7F2]/30 to-white min-h-[380px] flex flex-col">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activePanel}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="flex-1"
+            >
+              <PanelComp project={project} />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -474,8 +580,8 @@ function ProjectsPage() {
       {/* PROJECT CARDS LIST */}
       <section className="mx-auto mt-6 max-w-[1440px] px-6">
         <div className="space-y-6">
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+          {filteredProjects.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
       </section>
